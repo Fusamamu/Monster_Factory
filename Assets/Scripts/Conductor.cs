@@ -101,13 +101,13 @@ public class Conductor : MonoBehaviour
 
 			nextIndex++;
 
-			if (nextIndex > Beats.Length - 1)
-			{
-				nextIndex = 0;
-				MusicSource.Stop();
-				DspSongTime = (float)AudioSettings.dspTime;
-				MusicSource.Play();
-			}
+			// if (nextIndex > Beats.Length - 1)
+			// {
+			// 	nextIndex = 0;
+			// 	MusicSource.Stop();
+			// 	DspSongTime = (float)AudioSettings.dspTime;
+			// 	MusicSource.Play();
+			// }
 		}
 		
 		// if (SongPositionInBeats >= (CompletedLoops + 1) * BeatsPerLoop)
@@ -136,8 +136,8 @@ public class Conductor : MonoBehaviour
 		}
 	}
 
-	private void OnAudioFilterRead(float[] data, int channels)
-	{
-		
-	}
+	// private void OnAudioFilterRead(float[] data, int channels)
+	// {
+	// 	
+	// }
 }
