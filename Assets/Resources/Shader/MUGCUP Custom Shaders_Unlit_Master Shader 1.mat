@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MUGCUP Custom Shaders_Unlit_Master Shader 1
+  m_Shader: {fileID: 4800000, guid: 5ef8b91e909b14fa18d63879cd4a8136, type: 3}
+  m_ValidKeywords:
+  - GRADIENT_WORLDPOS
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _FlowMapTexture:
+        m_Texture: {fileID: 2800000, guid: f1d51ed493a42ad4789ff2be401e8b43, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 2a756ee02cc0a4f29801bf40cacdbe1c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: 1a4f52b613391cd449af3ad2e44affeb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ClockFrame: 1
+    - _DepthDistance: 0
+    - _EnableGradientWorld: 1
+    - _GradientOriginA: 0
+    - _GradientOriginB: 0
+    - _Intensity: 2.98
+    - _MainRadius: 0.53
+    - _NoiseScale: 0.01
+    - _SecondaryRadius: 0.72
+    - _WobbleSpeed: 1
+    m_Colors:
+    - _A1: {r: 0.122641504, g: 0.08966714, b: 0.08966714, a: 1}
+    - _A2: {r: 0.18262728, g: 0.2264151, b: 0.20764889, a: 1}
+    - _B1: {r: 0.20128751, g: 0.21698111, b: 0.12998396, a: 1}
+    - _B2: {r: 1, g: 0.87450516, b: 0.25, a: 1}
+    - _COL1: {r: 1, g: 1, b: 1, a: 1}
+    - _COL2: {r: 1, g: 1, b: 1, a: 1}
+    - _DepthColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _DepthColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _FilterCol: {r: 0.5660378, g: 0.4356672, b: 0.2322891, a: 1}
+    - _FrontCol: {r: 1, g: 1, b: 1, a: 1}
+    - _G1: {r: 0.30277675, g: 0.33354884, b: 0.33962262, a: 1}
+    - _G2: {r: 0.72560483, g: 0.745283, b: 0.56599325, a: 1}
+    - _GradientCol1: {r: 0, g: 0, b: 0, a: 1}
+    - _GradientCol2: {r: 0, g: 0, b: 0, a: 1}
+    - _GradientCol3: {r: 0, g: 0, b: 0, a: 1}
+    - _HitColor: {r: 1, g: 1, b: 1, a: 1}
+    - _R1: {r: 0.24528301, g: 0.16322657, b: 0.123798504, a: 1}
+    - _R2: {r: 0.36850303, g: 0.46226418, b: 0.44351196, a: 1}
+    - _SamplePos: {r: 0.36, g: 0.11, b: 0.99, a: 1}
+    - _SideCol: {r: 1, g: 1, b: 1, a: 1}
+    - _TopCol: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
