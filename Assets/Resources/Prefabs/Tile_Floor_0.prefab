@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8554689532036939305}
   - component: {fileID: 4690366363030483340}
   - component: {fileID: 7418396236720342342}
+  - component: {fileID: 1147236771908908170}
   m_Layer: 0
   m_Name: Tile_Floor_0
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1147236771908908170
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075752029206357139}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 0.049022708, z: 1.0000002}
+  m_Center: {x: 0, y: -0.024511354, z: 0.00000023841858}

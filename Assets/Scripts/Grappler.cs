@@ -29,7 +29,6 @@ namespace Monster
         private void Update()
         {
             //these input checking will be change to events when implementing new input system
-
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
             {
                 GetTargetTransformPosition();
@@ -68,17 +67,14 @@ namespace Monster
         private void GetTargetTransformPosition()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
             if (Physics.Raycast(ray, out var mouseHit, Mathf.Infinity))
             {
                 if (Physics.Raycast(transform.position, mouseHit.point-transform.position, out var grapplingHit))
                 {
                     targetPosition = grapplingHit.point;
                     targetRigidBody = grapplingHit.rigidbody;
-
-                    Debug.Log(grapplingHit.transform.name);
-
                 }
-
             }
         }
 
@@ -93,7 +89,6 @@ namespace Monster
             if (targetPosition != null && isGrappling)
                 Gizmos.DrawLine(transform.position, targetPosition);
         }
-
         #endregion
     }
 }
