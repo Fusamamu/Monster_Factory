@@ -13,6 +13,8 @@ namespace Monster
         [field: SerializeField] public Transform TargetTransform { get; private set; }
         
         [SerializeField] private Grappler Grappler;
+
+        [SerializeField] private RenderControl    RenderControl;
         [SerializeField] private CameraController CameraController;
         
         public void Init()
@@ -21,12 +23,15 @@ namespace Monster
                 return;
             IsInit = true;
             
-            Grappler.Init();
+            Grappler     .Init();
+            RenderControl.Init();
         }
 
         private void Update()
         {
-            CameraController.AnchorTarget.position = TargetTransform.position;
+            var _position = TargetTransform.position;
+            RenderControl.SetLightPosition(_position);
+            CameraController.AnchorTarget.position = _position;
         }
     }
 }

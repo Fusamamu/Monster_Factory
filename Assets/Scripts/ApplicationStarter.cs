@@ -14,7 +14,6 @@ namespace Monster
         {
             Player.Init();
             CameraController.Init();
-            
         }
     }
 }
