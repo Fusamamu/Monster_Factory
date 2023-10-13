@@ -2,23 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Monster
 {
-    public class Grappler : MonoBehaviour
+    public class Grappler : MonoBehaviour, IInitializable
     {
-        [Header("Dependencies")]
-        [SerializeField] private Rigidbody rigidBody;
+        public bool IsInit { get; private set; }
+        
+        [SerializeField] private Rigidbody RigidBody;
 
-        [Header("Settings")]
-        [SerializeField] private float grapplingRange = 30;
-        [SerializeField] private float grapplingForce = 25;
+        [SerializeField] private float GrapplingRange = 30;
+        [SerializeField] private float GrapplingForce = 25;
 
-        [Header("Debug")]
-        [SerializeField] private Vector3 targetPosition;
-        [SerializeField] private Rigidbody targetRigidBody;
-        [SerializeField] private MouseHeld currentMouseHeld;
+        [SerializeField] private Vector3 TargetPosition;
+        [SerializeField] private Rigidbody TargetRigidBody;
+        
+        [SerializeField] private MouseHeld CurrentMouseHeld;
 
+        private Camera mainCamera;
+        
         private bool isGrappling;
 
         private enum MouseHeld
@@ -26,68 +29,74 @@ namespace Monster
             Left,Right
         }
 
+        public void Init()
+        {
+            if(IsInit)
+                return;
+            IsInit = true;
+            
+            mainCamera = Camera.main;
+        }
+
         private void Update()
         {
-            //these input checking will be change to events when implementing new input system
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-            {
+            if (Mouse.current.leftButton.wasPressedThisFrame || 
+                Mouse.current.rightButton.wasPressedThisFrame)
                 GetTargetTransformPosition();
+
+            if (Mouse.current.leftButton.isPressed)
+            {
+                isGrappling = true;   
+                CurrentMouseHeld = MouseHeld.Left;
             }
 
-            if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+            if (Mouse.current.rightButton.isPressed)
             {
                 isGrappling = true;
-
-                if (Input.GetMouseButton(0))
-                    currentMouseHeld = MouseHeld.Left;
-                else
-                    currentMouseHeld = MouseHeld.Right;
-
+                CurrentMouseHeld = MouseHeld.Right;
             }
-            else
-                isGrappling = false;
-
         }
 
         private void FixedUpdate()
         {
-            if (isGrappling && targetPosition != null)
-            {
-                Vector3 direction = (targetPosition - transform.position).normalized;
+            if (!isGrappling) return;
+            
+            Vector3 _direction = (TargetPosition - transform.position).normalized;
 
-                if (currentMouseHeld == MouseHeld.Left)
-                    rigidBody.AddForce(direction * grapplingForce);
-                else if (currentMouseHeld == MouseHeld.Right && targetRigidBody != null)
-                {
-                    targetRigidBody.AddForce(-direction * grapplingForce);
-                }
+            switch (CurrentMouseHeld)
+            {
+                case MouseHeld.Left:
+                    RigidBody.AddForce(_direction * GrapplingForce);
+                    break;
+                case MouseHeld.Right when TargetRigidBody != null:
+                    TargetRigidBody.AddForce(-_direction * GrapplingForce);
+                    break;
             }
         }
 
         private void GetTargetTransformPosition()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var _ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             
-            if (Physics.Raycast(ray, out var mouseHit, Mathf.Infinity))
+            if (Physics.Raycast(_ray, out var _mouseHit, Mathf.Infinity))
             {
-                if (Physics.Raycast(transform.position, mouseHit.point-transform.position, out var grapplingHit))
-                {
-                    targetPosition = grapplingHit.point;
-                    targetRigidBody = grapplingHit.rigidbody;
-                }
+                TargetPosition  = _mouseHit.point;
+                TargetRigidBody = _mouseHit.rigidbody;
+                
+                Debug.Log("Hit");
             }
         }
 
         #region Gizmos
         private void OnDrawGizmos()
         {
-            if (currentMouseHeld == MouseHeld.Left)
+            if (CurrentMouseHeld == MouseHeld.Left)
                 Gizmos.color = Color.red;
             else
                 Gizmos.color = Color.blue;
 
-            if (targetPosition != null && isGrappling)
-                Gizmos.DrawLine(transform.position, targetPosition);
+            if (isGrappling)
+                Gizmos.DrawLine(transform.position, TargetPosition);
         }
         #endregion
     }

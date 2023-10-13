@@ -2,26 +2,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Monster
 {
-    public class CameraController : MonoBehaviour
+    [Serializable]
+    public class CameraPositionUpdateEvent : UnityEvent <Vector3> {}
+    
+    public class CameraController : MonoBehaviour, IInitializable
     {
-        [SerializeField] private Camera MainCamera;
-        [SerializeField] private Transform AnchorTarget;
+        public bool IsInit { get; private set; }
+        
+        [field: SerializeField] public Camera    MainCamera   { get; private set; }
+        [field: SerializeField] public Transform AnchorTarget { get; private set; }
 
         [SerializeField] private float CameraSpeed;
 
         private CameraControl cameraControl;
 
-        private void Start()
-        {
-            Init();
-        }
-
+        [SerializeField] public CameraPositionUpdateEvent CameraPositionUpdateEvent = new ();
+        
         public void Init()
         {
+            if(IsInit)
+                return;
+            IsInit = true;
+            
             cameraControl = new CameraControl();
             cameraControl.CameraMovement.Enable();
 
@@ -29,6 +36,11 @@ namespace Monster
             cameraControl.CameraMovement.MoveRight.performed += MoveRight;
             cameraControl.CameraMovement.MoveUp   .performed += MoveUp;
             cameraControl.CameraMovement.MoveDown .performed += MoveDown;
+        }
+
+        public void SetAnchorTarget(Transform _target)
+        {
+            AnchorTarget = _target;
         }
 
         private void Update()
@@ -48,6 +60,8 @@ namespace Monster
             var _zoomOutValue = cameraControl.CameraMovement.ZoomOut.ReadValue<float>();
             if (_zoomOutValue > 0f)
                 MainCamera.transform.position += -(MainCamera.transform.forward) * CameraSpeed;
+            
+            CameraPositionUpdateEvent?.Invoke(AnchorTarget.transform.position);
         }
 
         private void MoveLeft(InputAction.CallbackContext _context)
