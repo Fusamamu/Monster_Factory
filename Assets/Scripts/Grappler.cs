@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Shapes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,14 +10,15 @@ namespace Monster
     public class Grappler : MonoBehaviour, IInitializable
     {
         public bool IsInit { get; private set; }
-        
+
+        [SerializeField] private Line      LineRender;
         [SerializeField] private Rigidbody RigidBody;
 
         [SerializeField] private float GrapplingRange = 30;
         [SerializeField] private float GrapplingForce = 25;
 
-        [SerializeField] private Vector3 TargetPosition;
         [SerializeField] private Rigidbody TargetRigidBody;
+        [SerializeField] private Vector3 TargetPosition;
         
         [SerializeField] private MouseHeld CurrentMouseHeld;
 
@@ -55,6 +57,8 @@ namespace Monster
                 isGrappling = true;
                 CurrentMouseHeld = MouseHeld.Right;
             }
+
+            LineRender.End = TargetPosition - transform.position;
         }
 
         private void FixedUpdate()
@@ -82,8 +86,6 @@ namespace Monster
             {
                 TargetPosition  = _mouseHit.point;
                 TargetRigidBody = _mouseHit.rigidbody;
-                
-                Debug.Log("Hit");
             }
         }
 
