@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5801321472167530371}
   - component: {fileID: 7434797232939548710}
   - component: {fileID: 4668337224473621740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor_2x2_Smooth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
