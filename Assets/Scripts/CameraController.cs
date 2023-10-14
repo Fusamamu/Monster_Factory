@@ -45,6 +45,9 @@ namespace Monster
 
         private void Update()
         {
+            if(!IsInit)
+                return;
+            
             var _a = cameraControl.CameraMovement.MoveLeft.ReadValue<float>();
             if (_a > 0f) 
                 AnchorTarget.transform.position += Vector3.left * CameraSpeed * _a;

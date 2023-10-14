@@ -15,7 +15,7 @@ namespace Monster
 
 		protected readonly List<T> ActivePoolObjects = new List<T>();
 
-		public virtual void Initialized()
+		public virtual void Init()
 		{
 			Pool = new ObjectPool<T>(CreateObject, OnGetObject, OnRelease, OnObjectDestroyed, maxSize: PoolSize);
 		}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8623864546913316823}
   - component: {fileID: 4612183583876276338}
   - component: {fileID: 7486446862040667320}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor_Corner_Invert_1x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

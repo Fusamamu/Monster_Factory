@@ -15,6 +15,7 @@ namespace Monster
 
         [SerializeField] private float Speed;
 
+        private Vector3 targetPos;
         private Vector3 direction;
         private bool isFiring;
 
@@ -29,9 +30,15 @@ namespace Monster
             return this;
         }
 
+        private Bullet SetTarget(Vector3 _position)
+        {
+            targetPos = _position;
+            return this;
+        }
+
         public Bullet SetDirection(Vector3 _normalDir)
         {
-            direction = _normalDir;
+            direction = _normalDir.normalized;
             return this;
         }
 
