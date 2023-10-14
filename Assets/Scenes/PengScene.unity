@@ -13109,6 +13109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scientist (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7229224051861892665, guid: 2517e56031ede41d9b59aa45ba7d1b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8005302636603536515, guid: 2517e56031ede41d9b59aa45ba7d1b0d,
         type: 3}
       propertyPath: m_RootOrder
@@ -15078,6 +15083,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scientist (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7229224051861892665, guid: 2517e56031ede41d9b59aa45ba7d1b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8005302636603536515, guid: 2517e56031ede41d9b59aa45ba7d1b0d,
         type: 3}
       propertyPath: m_RootOrder
@@ -15974,7 +15984,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554375277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5478878, y: 0.86702484, z: -6.2216887}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30306,6 +30316,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scientist (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229224051861892665, guid: 2517e56031ede41d9b59aa45ba7d1b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8005302636603536515, guid: 2517e56031ede41d9b59aa45ba7d1b0d,
         type: 3}
