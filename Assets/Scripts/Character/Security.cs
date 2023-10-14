@@ -62,6 +62,9 @@ namespace Monster
 
         private void Update()
         {
+            if(!IsInit)
+                return;
+            
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 StopShooting();
@@ -86,7 +89,9 @@ namespace Monster
             
             var _position = TargetTransform.position;
             RenderControl.SetLightPosition(_position);
-            CameraController.AnchorTarget.position = _position;
+            
+            if(CameraController)
+                CameraController.AnchorTarget.position = _position;
 
             if (IsShooting)
             {

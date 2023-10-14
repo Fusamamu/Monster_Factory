@@ -16,7 +16,8 @@ namespace Monster
             foreach (var _character in _allCharacter)
                 _character.Init();
             
-            CameraController.Init();
+            if(CameraController)
+                CameraController.Init();
         }
     }
 }
