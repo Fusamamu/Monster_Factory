@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Monster
 {
-    public interface ICharacter : IVisible, IInitializable
+    public interface ICharacter : IShootAble, IInitializable
     {
       
     }

@@ -20,7 +20,7 @@ namespace Monster
 
         public void Initialized()
         {
-            BulletPool.Initialized();
+            BulletPool.Init();
             StartCoroutine(ShootBulletCoroutine());
         }
 

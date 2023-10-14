@@ -11,11 +11,15 @@ namespace Monster
 
         public bool IsVisible { get; private set; } = false;
         
+        public bool IsTargetLock { get; set; }
+        
         [field: SerializeField] public RenderControl RenderControl { get; private set; }
         
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
         [field: SerializeField] public Transform TargetTransform { get; private set; }
+        
+        [field: SerializeField] public Transform ShootTarget { get; private set;  }
         
         public void Init()
         {
