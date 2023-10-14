@@ -18,6 +18,8 @@ namespace Monster
 
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
+
+        private Vector3 destinationPos;
         
         [field: SerializeField] public Transform TargetTransform { get; private set; }
         [field: SerializeField] public Transform ShootTarget     { get; private set;  }
@@ -35,8 +37,8 @@ namespace Monster
         private readonly List<IVisible>   allVisibleInRange   = new List<IVisible>();
         private readonly List<IShootAble> allShootAbleInRange = new List<IShootAble>();
         
-        private static readonly int isAnimatorRunning  = Animator.StringToHash("IsRunning");
-        private static readonly int isAnimatorShooting = Animator.StringToHash("IsShooting");
+        // private static readonly int isAnimatorRunning  = Animator.StringToHash("IsRunning");
+        // private static readonly int isAnimatorShooting = Animator.StringToHash("IsShooting");
 
         private Camera mainCam;
         
@@ -60,6 +62,9 @@ namespace Monster
 
         private void Update()
         {
+            if(!IsInit)
+                return;
+            
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 StopShooting();
@@ -68,7 +73,8 @@ namespace Monster
 
                 if (Physics.Raycast(_ray, out var _mouseHit, Mathf.Infinity))
                 {
-                    Animator.SetBool(isAnimatorRunning, true);   
+                    Animator.SetBool(AnimHash.IsRunning, true);
+                    NavMeshAgent.isStopped = false;
                     NavMeshAgent.destination = _mouseHit.point;
                 }
             }
@@ -78,12 +84,14 @@ namespace Monster
             {
                 if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance)
                     if (!NavMeshAgent.hasPath || NavMeshAgent.velocity.sqrMagnitude == 0f)
-                        Animator.SetBool(isAnimatorRunning, false);
+                        Animator.SetBool(AnimHash.IsRunning, false);
             }
             
             var _position = TargetTransform.position;
             RenderControl.SetLightPosition(_position);
-            CameraController.AnchorTarget.position = _position;
+            
+            if(CameraController)
+                CameraController.AnchorTarget.position = _position;
 
             if (IsShooting)
             {
@@ -108,17 +116,17 @@ namespace Monster
             
             while (_shootCount <= 3)
             {
-                yield return new WaitForSeconds(ShootInterval);
-
                 var _bullet = BulletPool.Pool?.Get();
                 if (_bullet)
                 {
                     _bullet
                         .SetSpawnPosition(BulletSpawnTarget.position)
-                        .SetDirection(_targetPos - TargetTransform.position)
+                        .SetDirection(TargetTransform.forward)
                         .StartFire();
                 }
 
+                yield return new WaitForSeconds(ShootInterval);
+                
                 _shootCount++;
             }
             
@@ -127,13 +135,14 @@ namespace Monster
         
         private void StartShooting()
         {
-            
+            IsShooting = true;
+            Animator.SetBool(AnimHash.IsShooting, IsShooting);
         }
 
         private void StopShooting()
         {
             IsShooting = false;
-            Animator.SetBool(isAnimatorShooting, false);
+            Animator.SetBool(AnimHash.IsShooting, false);
 
             if (shootingProcess != null)
             {
@@ -154,10 +163,10 @@ namespace Monster
 
                 if (_visible is IShootAble _shootAble)
                 {
-                    IsShooting = true;
-                    
-                    Animator    .SetBool(isAnimatorShooting, IsShooting);
-                    NavMeshAgent.SetDestination(TargetTransform.position);
+                    StartShooting();
+
+                    NavMeshAgent.ResetPath();
+                    NavMeshAgent.isStopped = true;
                     
                     if(!allShootAbleInRange.Contains(_shootAble))
                         allShootAbleInRange.Add(_shootAble);
@@ -165,6 +174,13 @@ namespace Monster
                 
                 if(!allVisibleInRange.Contains(_visible))
                     allVisibleInRange.Add(_visible);
+            }
+
+            if (_other.TryGetComponent<Scientist>(out var _scientist))
+            {
+                _scientist.IsFound   = true;
+                _scientist.TargetPos = TargetTransform.position;
+                _scientist.FollowTarget = TargetTransform;
             }
         }
         

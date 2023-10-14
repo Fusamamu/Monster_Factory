@@ -15,17 +15,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.17392826
+      value: 7.067808
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0000009536743
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.7870417
+      value: -2.2250109
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
         type: 3}
@@ -151,6 +151,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7535143576636560232}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &566047528
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7229224051861892665}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.5490222
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7745111, z: 0}
 --- !u!195 &688175821
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -160,7 +174,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7229224051861892665}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -212,8 +226,10 @@ MonoBehaviour:
   <RenderControl>k__BackingField: {fileID: 4447565576994796619}
   <Animator>k__BackingField: {fileID: 4177265130351734521}
   <NavMeshAgent>k__BackingField: {fileID: 688175821}
-  <TargetTransform>k__BackingField: {fileID: 8005302636603536515}
   <ShootTarget>k__BackingField: {fileID: 8005302636603536515}
+  IsFound: 0
+  TargetPos: {x: 0, y: 0, z: 0}
+  rotationSpeed: 7
 --- !u!4 &8005302636603536515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
