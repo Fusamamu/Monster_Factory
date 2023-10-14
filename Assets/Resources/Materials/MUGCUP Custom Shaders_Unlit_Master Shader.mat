@@ -22,7 +22,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _FlowMapTexture:
-        m_Texture: {fileID: 2800000, guid: f1d51ed493a42ad4789ff2be401e8b43, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -30,7 +30,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
-        m_Texture: {fileID: 2800000, guid: 1a4f52b613391cd449af3ad2e44affeb, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -41,30 +41,30 @@ Material:
     - _GradientOriginA: 0.38
     - _GradientOriginB: 4
     - _Intensity: 2.98
-    - _MainRadius: 0.40522286
+    - _MainRadius: 3.71
     - _NoiseScale: 0.03
-    - _SecondaryRadius: 0.6078343
+    - _SecondaryRadius: 4.22
     - _WobbleSpeed: 1
     m_Colors:
-    - _A1: {r: 0.16037738, g: 0.11877005, b: 0.11877005, a: 1}
+    - _A1: {r: 0.09019608, g: 0.043137256, b: 0.03137255, a: 1}
     - _A2: {r: 0.6792453, g: 0.59174544, b: 0.509434, a: 1}
-    - _B1: {r: 1, g: 0.75873613, b: 0.48584908, a: 1}
+    - _B1: {r: 0.09019608, g: 0.043137256, b: 0.03137255, a: 1}
     - _B2: {r: 0.6037736, g: 0.407396, b: 0.20790316, a: 1}
     - _COL1: {r: 1, g: 1, b: 1, a: 1}
     - _COL2: {r: 1, g: 1, b: 1, a: 1}
     - _DepthColor1: {r: 0.21960786, g: 0.1254902, b: 0.1254902, a: 1}
     - _DepthColor2: {r: 1, g: 1, b: 1, a: 1}
-    - _FilterCol: {r: 0.5943396, g: 0.49061054, b: 0.49061054, a: 1}
+    - _FilterCol: {r: 0.5754717, g: 0.4750356, b: 0.4750356, a: 1}
     - _FrontCol: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
-    - _G1: {r: 0.3207547, g: 0.2863593, b: 0.2738519, a: 1}
+    - _G1: {r: 0.09019608, g: 0.043137256, b: 0.03137255, a: 1}
     - _G2: {r: 0.5377358, g: 0.41997, b: 0.372864, a: 1}
     - _GradientCol1: {r: 1, g: 1, b: 1, a: 1}
     - _GradientCol2: {r: 1, g: 1, b: 1, a: 1}
     - _GradientCol3: {r: 1, g: 1, b: 1, a: 1}
     - _HitColor: {r: 1, g: 1, b: 1, a: 1}
-    - _R1: {r: 0.17933428, g: 0.19209856, b: 0.24528301, a: 1}
+    - _R1: {r: 0.09019608, g: 0.043137256, b: 0.03137255, a: 1}
     - _R2: {r: 0.8207547, g: 0.74777526, b: 0.615566, a: 1}
-    - _SamplePos: {r: 1.4399923, g: 0.4999999, b: 9.456806, a: 0}
+    - _SamplePos: {r: 0.9, g: 0, b: -5.81, a: 0}
     - _SideCol: {r: 0.3962264, g: 0.35748553, b: 0.30838376, a: 1}
     - _TopCol: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
