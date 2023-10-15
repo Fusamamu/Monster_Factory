@@ -5,7 +5,6 @@ using UnityEngine.AI;
 using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
 
-
 namespace Monster
 {
     public class Scientist : MonoBehaviour, ICharacter
@@ -14,17 +13,16 @@ namespace Monster
 
         public bool IsVisible { get; private set; } = false;
         
-        public bool IsTargetLock { get; set; }
+        public int HP { get; private set; }
+        
+        [field: SerializeField] public bool IsTargetLock { get; set; }
         
         [field: SerializeField] public RenderControl RenderControl { get; private set; }
         
         [field: SerializeField] public Animator     Animator        { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent    { get; private set; }
-        public int HP { get => hp; private set => hp = value; }
-
-        [SerializeField] private int hp;
+      
         [SerializeField] private BehaviorTree BehaviourTree;
-
 
         public bool IsFound;
         public Transform FollowTarget;
@@ -79,9 +77,6 @@ namespace Monster
                 .Build();
             
             
-            
-
-            
                // BehaviourTree = new BehaviorTreeBuilder(gameObject)
                //  .Sequence()
                //      .Sequence()
@@ -119,6 +114,11 @@ namespace Monster
                         Animator.SetBool(AnimHash.IsRunning, false);
                     }
             }
+        }
+        
+        public void ReceiveDamage(int _damage)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void SetVisible(bool _value)

@@ -9,7 +9,7 @@ namespace Monster
 {
     public enum SecurityType
     {
-        A, B, C, D
+        KAMEE, AI, BRIGHT, POOM
     }
     
     public class Security : MonoBehaviour, ICharacter, IAttackAble
@@ -18,6 +18,8 @@ namespace Monster
         
         public bool IsInit    { get; private set; }
         public bool IsVisible { get; private set; } = true;
+        
+        [field: SerializeField] public int HP { get; private set; }
         
         public bool IsControlled { get; set; }
         public bool IsTargetLock { get; set; }
@@ -30,9 +32,6 @@ namespace Monster
         [field: SerializeField] public Transform TargetTransform { get; private set; }
         [field: SerializeField] public Transform AttackTarget     { get; private set;  }
 
-        public int HP { get => hp; private set => hp = value; }
-
-        [SerializeField] private int hp;
         [SerializeField] private RenderControl  RenderControl;
         [SerializeField] private CameraManager CameraManager;
 
@@ -61,6 +60,11 @@ namespace Monster
             mainCam = Camera.main;
 
             CameraManager = ServiceLocator.Instance.Get<CameraManager>();
+        }
+        
+        public void ReceiveDamage(int _damage)
+        {
+            throw new NotImplementedException();
         }
         
         public void SetVisible(bool _value)
@@ -186,22 +190,13 @@ namespace Monster
             }
 
             if (_other.TryGetComponent<Scientist>(out var _scientist))
-            {
-                // _scientist.IsFound   = true;
-                // _scientist.TargetPos = TargetTransform.position;
-                // _scientist.FollowTarget = TargetTransform;
-
                 _scientist.OnFoundHandler(transform);
-            }
         }
         
         private void OnTriggerExit(Collider _other)
         {
             if (_other.TryGetComponent<IVisible>(out var _visible))
-            {
-                //_visible.SetVisible(false);
                 allVisibleInRange.Remove(_visible);
-            }
         }
     }
 }

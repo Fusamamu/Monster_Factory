@@ -14,18 +14,15 @@ namespace Monster
         public bool IsVisible { get; private set; } = false;
 
         public bool IsTargetLock { get; set; }
+        
+        public Transform AttackTarget { get; }
 
-        //[field: SerializeField] public RenderControl RenderControl { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
 
-        public Transform AttackTarget { get; }
+        [field: SerializeField] public int HP { get; private set; }
 
-        public int HP { get => hp; private set => hp = value; }
-
-        [SerializeField] private int hp;
         [SerializeField] private BehaviorTree BehaviourTree;
-
 
         public bool IsFound;
         public Transform FollowTarget;
@@ -40,7 +37,6 @@ namespace Monster
                 return;
             IsInit = true;
 
-            //RenderControl.Init();
 
             BehaviourTree = new BehaviorTreeBuilder(gameObject)
                 .Selector()
@@ -48,6 +44,10 @@ namespace Monster
                     .AgentRoaming("Roaming", NavMeshAgent, transform, 5)
                 .End()
                 .Build();
+        }
+        
+        public void ReceiveDamage(int _damage)
+        {
         }
 
         private void Update()

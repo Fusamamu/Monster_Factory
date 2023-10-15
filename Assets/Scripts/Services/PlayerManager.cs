@@ -28,7 +28,7 @@ namespace Monster
                     securityTable.Add(_security.SecurityType, _security);
             }
 
-            StartCoroutine(SelectPlayerCoroutine(SecurityType.A));
+            StartCoroutine(SelectPlayerCoroutine(SecurityType.BRIGHT));
         }
 
         public IEnumerator SelectPlayerCoroutine(SecurityType _securityType)
