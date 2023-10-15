@@ -32,7 +32,9 @@ namespace Monster
         [field: SerializeField] public Transform TargetTransform { get; private set; }
         [field: SerializeField] public Transform AttackTarget     { get; private set;  }
 
-        [SerializeField] private RenderControl  RenderControl;
+        [SerializeField] private ColliderControl ColliderControl;
+        [SerializeField] private RenderControl   RenderControl;
+        
         [SerializeField] private CameraManager CameraManager;
 
         /*Shooting setting*/
@@ -44,7 +46,6 @@ namespace Monster
 
         private readonly List<IVisible>   allVisibleInRange   = new List<IVisible>();
         private readonly List<IAttackAble> allShootAbleInRange = new List<IAttackAble>();
-        
 
         private Camera mainCam;
         
@@ -55,16 +56,31 @@ namespace Monster
             IsInit = true;
             
             BulletPool.Init();
-            RenderControl.Init();
+            
+            ColliderControl.Init();
+            RenderControl  .Init();
 
             mainCam = Camera.main;
 
             CameraManager = ServiceLocator.Instance.Get<CameraManager>();
+            
+            ColliderControl.DisableAllColliders();
+        }
+
+        public void OnStartBeingControlled()
+        {
+            IsControlled = true;
+            ColliderControl.EnableAllColliders();
+        }
+
+        public void OnEndBeingControlled()
+        {
+            IsControlled = false;
+            ColliderControl.DisableAllColliders();
         }
         
         public void ReceiveDamage(int _damage)
         {
-            throw new NotImplementedException();
         }
         
         public void SetVisible(bool _value)

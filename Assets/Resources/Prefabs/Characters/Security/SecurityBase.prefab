@@ -1146,9 +1146,10 @@ GameObject:
   - component: {fileID: 4123124391349186407}
   - component: {fileID: 4123124391349186406}
   - component: {fileID: 4123124391349186426}
-  - component: {fileID: 4123124391349186428}
   - component: {fileID: 4123124391349186427}
   - component: {fileID: 6941945075331694626}
+  - component: {fileID: 4123124391349186428}
+  - component: {fileID: 8430686687389370854}
   m_Layer: 7
   m_Name: SecurityBase
   m_TagString: Untagged
@@ -1245,6 +1246,45 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4123124391349186427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731503964546235278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afa9746e3b4c491f808c477177b8f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SecurityType>k__BackingField: 0
+  <HP>k__BackingField: 0
+  <Animator>k__BackingField: {fileID: 54297495393860430}
+  <NavMeshAgent>k__BackingField: {fileID: 4123124391349186426}
+  <TargetTransform>k__BackingField: {fileID: 6206184158605680948}
+  <AttackTarget>k__BackingField: {fileID: 0}
+  ColliderControl: {fileID: 8430686687389370854}
+  RenderControl: {fileID: 4123124391349186428}
+  CameraManager: {fileID: 0}
+  IsShooting: 0
+  ShootInterval: 0.7
+  BulletPool: {fileID: 6941945075331694626}
+  BulletSpawnTarget: {fileID: 3714562708416126297}
+--- !u!114 &6941945075331694626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731503964546235278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86ad9f6cd97f45458b7af78050e0574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolSize: 100
+  Prefab: {fileID: 9096697382520354285, guid: 7586720aea28447709c6b6c1c153c084, type: 3}
 --- !u!114 &4123124391349186428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1305,7 +1345,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4123124391349186427
+--- !u!114 &8430686687389370854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1314,35 +1354,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6731503964546235278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8afa9746e3b4c491f808c477177b8f74, type: 3}
+  m_Script: {fileID: 11500000, guid: 84abb8b511657471dbf8c2f6683b7d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SecurityType>k__BackingField: 0
-  <Animator>k__BackingField: {fileID: 54297495393860430}
-  <NavMeshAgent>k__BackingField: {fileID: 4123124391349186426}
-  <TargetTransform>k__BackingField: {fileID: 6206184158605680948}
-  <AttackTarget>k__BackingField: {fileID: 0}
-  hp: 0
-  RenderControl: {fileID: 4123124391349186428}
-  CameraManager: {fileID: 0}
-  IsShooting: 0
-  ShootInterval: 0.7
-  BulletPool: {fileID: 6941945075331694626}
-  BulletSpawnTarget: {fileID: 3714562708416126297}
---- !u!114 &6941945075331694626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6731503964546235278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f86ad9f6cd97f45458b7af78050e0574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PoolSize: 100
-  Prefab: {fileID: 9096697382520354285, guid: 7586720aea28447709c6b6c1c153c084, type: 3}
+  <Colliders>k__BackingField:
+  - {fileID: 4123124391349186406}
 --- !u!1 &6860834592894372476
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,12 +45,15 @@ namespace Monster
                 
                 if (_type == _securityType)
                 {
-                    _security.IsControlled = true;
+                    _security.OnEndBeingControlled();
+                    //_security.IsControlled = true;
                     SelectedPlayer = _security;
                     continue;
                 }
                 
-                _security.IsControlled = false;
+                _security.OnStartBeingControlled();
+
+                //_security.IsControlled = false;
             }
         }
     }
