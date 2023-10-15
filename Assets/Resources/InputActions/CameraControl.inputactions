@@ -128,34 +128,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "PlayerControl",
-            "id": "5cf86ba4-fb68-4862-bc4a-69e923e1b7f1",
-            "actions": [
-                {
-                    "name": "ChangePlayer",
-                    "type": "Button",
-                    "id": "972a7dc2-ee40-49f7-bee8-5e3d9721ee61",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "b71bfe3b-b885-4927-9fd8-e252b190b395",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangePlayer",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
         }
     ],
     "controlSchemes": []

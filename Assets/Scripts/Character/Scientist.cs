@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using CleverCrow.Fluid.BTs.Tasks;
@@ -25,13 +24,17 @@ namespace Monster
         [SerializeField] private BehaviorTree BehaviourTree;
 
         public bool IsFound;
+        public Security FollowSecurity;
         public Transform FollowTarget;
         public Vector3 TargetPos;
         private Quaternion targetRotation;
 
         [SerializeField] private float rotationSpeed;
 
+        private bool isFollowing;
         private bool isRunning;
+
+       // public CharacterState CharacterState = CharacterState.IDLE;
         
         public void Init()
         {
@@ -57,7 +60,6 @@ namespace Monster
                     })
                     .Do("Start Follow", () =>
                     {
-                        Debug.Log("Start Follow ");
                         isRunning = true;
                         Animator.SetBool(AnimHash.IsRunning, true);
                         NavMeshAgent.isStopped = false;
@@ -75,30 +77,6 @@ namespace Monster
                     .End()
                 //.End()
                 .Build();
-            
-            
-               // BehaviourTree = new BehaviorTreeBuilder(gameObject)
-               //  .Sequence()
-               //      .Sequence()
-               //      .Do("A", () =>
-               //      {
-               //          Debug.Log("A");
-               //          return TaskStatus.Continue;
-               //      })
-               //      .Do("B", () =>
-               //      {
-               //          Debug.Log("B");
-               //          return TaskStatus.Success;
-               //      })
-               //      .End()
-               //  .Do("C", () =>
-               //  {
-               //      Debug.Log("C");
-               //      return TaskStatus.Success;
-               //  })
-               //  .End()
-               //  .Build();
-
         }
         
         private void Update () 
@@ -115,10 +93,17 @@ namespace Monster
                     }
             }
         }
+
+        public void MoveTo(Vector3 _targetPos)
+        {
+            isRunning = true;
+            Animator.SetBool(AnimHash.IsRunning, true);
+            NavMeshAgent.isStopped = false;
+            NavMeshAgent.SetDestination(_targetPos);
+        }
         
         public void ReceiveDamage(int _damage)
         {
-            throw new System.NotImplementedException();
         }
 
         public void SetVisible(bool _value)
@@ -135,11 +120,17 @@ namespace Monster
             }
         }
 
-        public void OnFoundHandler(Transform _foundObject)
+        public void OnStartFollowHandler(Security _security)
         {
-            TargetPos    = _foundObject.position;
-            FollowTarget = _foundObject;
+            FollowSecurity = _security;
+            TargetPos      = _security.transform.position;
+            FollowTarget   = _security.transform;
             StartCoroutine(CelebrateCoroutine());
+        }
+
+        public void OnStopFollowHandler()
+        {
+            
         }
 
         private IEnumerator CelebrateCoroutine()

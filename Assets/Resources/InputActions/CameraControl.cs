@@ -152,34 +152,6 @@ namespace Monster
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""PlayerControl"",
-            ""id"": ""5cf86ba4-fb68-4862-bc4a-69e923e1b7f1"",
-            ""actions"": [
-                {
-                    ""name"": ""ChangePlayer"",
-                    ""type"": ""Button"",
-                    ""id"": ""972a7dc2-ee40-49f7-bee8-5e3d9721ee61"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""b71bfe3b-b885-4927-9fd8-e252b190b395"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangePlayer"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
@@ -192,9 +164,6 @@ namespace Monster
             m_CameraMovement_MoveDown = m_CameraMovement.FindAction("MoveDown", throwIfNotFound: true);
             m_CameraMovement_ZoomIn = m_CameraMovement.FindAction("ZoomIn", throwIfNotFound: true);
             m_CameraMovement_ZoomOut = m_CameraMovement.FindAction("ZoomOut", throwIfNotFound: true);
-            // PlayerControl
-            m_PlayerControl = asset.FindActionMap("PlayerControl", throwIfNotFound: true);
-            m_PlayerControl_ChangePlayer = m_PlayerControl.FindAction("ChangePlayer", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -323,39 +292,6 @@ namespace Monster
             }
         }
         public CameraMovementActions @CameraMovement => new CameraMovementActions(this);
-
-        // PlayerControl
-        private readonly InputActionMap m_PlayerControl;
-        private IPlayerControlActions m_PlayerControlActionsCallbackInterface;
-        private readonly InputAction m_PlayerControl_ChangePlayer;
-        public struct PlayerControlActions
-        {
-            private @CameraControl m_Wrapper;
-            public PlayerControlActions(@CameraControl wrapper) { m_Wrapper = wrapper; }
-            public InputAction @ChangePlayer => m_Wrapper.m_PlayerControl_ChangePlayer;
-            public InputActionMap Get() { return m_Wrapper.m_PlayerControl; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(PlayerControlActions set) { return set.Get(); }
-            public void SetCallbacks(IPlayerControlActions instance)
-            {
-                if (m_Wrapper.m_PlayerControlActionsCallbackInterface != null)
-                {
-                    @ChangePlayer.started -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnChangePlayer;
-                    @ChangePlayer.performed -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnChangePlayer;
-                    @ChangePlayer.canceled -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnChangePlayer;
-                }
-                m_Wrapper.m_PlayerControlActionsCallbackInterface = instance;
-                if (instance != null)
-                {
-                    @ChangePlayer.started += instance.OnChangePlayer;
-                    @ChangePlayer.performed += instance.OnChangePlayer;
-                    @ChangePlayer.canceled += instance.OnChangePlayer;
-                }
-            }
-        }
-        public PlayerControlActions @PlayerControl => new PlayerControlActions(this);
         public interface ICameraMovementActions
         {
             void OnMoveLeft(InputAction.CallbackContext context);
@@ -364,10 +300,6 @@ namespace Monster
             void OnMoveDown(InputAction.CallbackContext context);
             void OnZoomIn(InputAction.CallbackContext context);
             void OnZoomOut(InputAction.CallbackContext context);
-        }
-        public interface IPlayerControlActions
-        {
-            void OnChangePlayer(InputAction.CallbackContext context);
         }
     }
 }
