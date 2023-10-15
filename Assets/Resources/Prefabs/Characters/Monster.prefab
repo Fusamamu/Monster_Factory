@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 4521153465625292068}
   - component: {fileID: 4521153465625292069}
   - component: {fileID: 5105206464229223454}
-  - component: {fileID: 5105206465024869063}
   - component: {fileID: 5105206465024869056}
+  - component: {fileID: 7120078993703922539}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -149,7 +149,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: 0.79158473, y: 0, z: -0.33437452}
+  velocity: {x: -0.33709016, y: 0, z: -0.6582503}
 --- !u!114 &5105206464229223454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,21 +165,6 @@ MonoBehaviour:
   height: 0.8
   speed: 5
   velocityLerpCoef: 4
---- !u!114 &5105206465024869063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4521153465625292070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6e7cc4e04ab04e238d01c86425dc518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Agent: {fileID: 5105206465024869056}
-  Range: 5
-  CentrePoint: {fileID: 4521153465625292068}
 --- !u!195 &5105206465024869056
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -202,3 +187,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7120078993703922539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4521153465625292070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff618bc6af986486ea428ee12d6be93a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Animator>k__BackingField: {fileID: 0}
+  <NavMeshAgent>k__BackingField: {fileID: 5105206465024869056}
+  hp: 200
+  IsFound: 0
+  FollowTarget: {fileID: 0}
+  TargetPos: {x: 0, y: 0, z: 0}
+  rotationSpeed: 0

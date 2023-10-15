@@ -1,3 +1,4 @@
+using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,8 +15,7 @@ namespace Monster
 
         public bool IsTargetLock { get; set; }
 
-        [field: SerializeField] public RenderControl RenderControl { get; private set; }
-
+        //[field: SerializeField] public RenderControl RenderControl { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
 
@@ -40,7 +40,14 @@ namespace Monster
                 return;
             IsInit = true;
 
-            RenderControl.Init();
+            //RenderControl.Init();
+
+            BehaviourTree = new BehaviorTreeBuilder(gameObject)
+                .Selector()
+                    .AgentChasing("Chasing", NavMeshAgent, FollowTarget)
+                    .AgentRoaming("Roaming", NavMeshAgent, transform, 5)
+                .End()
+                .Build();
         }
 
         private void Update()
@@ -50,16 +57,16 @@ namespace Monster
 
         public void SetVisible(bool _value)
         {
-            IsVisible = _value;
-            if (!_value)
-            {
-                RenderControl.UseInvisibleMaterial();
-                RenderControl.SetTransparent(0);
-            }
-            else
-            {
-                RenderControl.UseDefaultMaterial();
-            }
+            //IsVisible = _value;
+            //if (!_value)
+            //{
+            //    RenderControl.UseInvisibleMaterial();
+            //    RenderControl.SetTransparent(0);
+            //}
+            //else
+            //{
+            //    RenderControl.UseDefaultMaterial();
+            //}
         }
     }
 }
