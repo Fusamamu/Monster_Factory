@@ -20,10 +20,9 @@ namespace Monster
         
         [field: SerializeField] public Animator     Animator        { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent    { get; private set; }
-        
-        [field: SerializeField] public Transform ShootTarget { get; private set;  }
+        public int HP { get => hp; private set => hp = value; }
 
-
+        [SerializeField] private int hp;
         [SerializeField] private BehaviorTree BehaviourTree;
 
 
