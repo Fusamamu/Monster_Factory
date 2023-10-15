@@ -16,12 +16,14 @@ namespace Monster
 
             if (TargetTransform == null)
             {
+                Debug.Log(TargetTransform);
                 return TaskStatus.Failure;
             }
             else
             {
                 Agent.SetDestination(TargetTransform.position);
                 Debug.DrawRay(Agent.transform.position, TargetTransform.position, Color.red, 1.0f);
+                Debug.Log(TargetTransform);
                 return TaskStatus.Success;
             }
         }

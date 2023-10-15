@@ -44,8 +44,15 @@ namespace Monster
 
             BehaviourTree = new BehaviorTreeBuilder(gameObject)
                 .Selector()
-                    .AgentChasing("Chasing", NavMeshAgent, FollowTarget)
-                    .AgentRoaming("Roaming", NavMeshAgent, transform, 5)
+                    .Sequence("Chasing")
+                        .Condition(() => FollowTarget != null)
+                        .Do("Chase Target", () => 
+                        {
+                            NavMeshAgent.SetDestination(FollowTarget.transform.position);
+                            return TaskStatus.Success;
+                        })
+                    .End()
+                .AgentRoaming("Roaming", NavMeshAgent, transform, 5)
                 .End()
                 .Build();
         }
