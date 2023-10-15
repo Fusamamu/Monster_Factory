@@ -1,1 +1,34 @@
-{}
+{
+    "name": "PlayerControl",
+    "maps": [
+        {
+            "name": "PlayerSelection",
+            "id": "103197b4-8e22-446b-baa3-512904ed5e5f",
+            "actions": [
+                {
+                    "name": "ChangePlayerControl",
+                    "type": "Button",
+                    "id": "c1f64771-ff37-4753-90af-f8eecb9f6cbc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "54d51385-887e-49c7-9df6-6894424cd7bd",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangePlayerControl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

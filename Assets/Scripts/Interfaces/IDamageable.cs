@@ -8,6 +8,6 @@ namespace Monster
     {
         public int HP { get; }
 
-        public void RecieveDamage(int _damge) { }
+        public void ReceiveDamage(int _damage);
     }
 }

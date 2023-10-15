@@ -7,16 +7,23 @@ namespace Monster
     public class PlayerManager : Service
     {
         [field: SerializeField] public Security SelectedPlayer { get; private set; }
+
+        [SerializeField] private int ControlIndex;
+        [SerializeField] private RenderControl RenderControl;
         
         private readonly Dictionary<SecurityType, Security> securityTable = new Dictionary<SecurityType, Security>();
 
+        private PlayerControl playerControl;
         private CameraManager cameraManager;
+        private Coroutine changeControlProcess;
 
         public override void Init()
         {
             if(IsInit)
                 return;
             IsInit = true;
+            
+            RenderControl.Init();
 
             cameraManager = ServiceLocator.Instance.Get<CameraManager>();
 
@@ -28,30 +35,48 @@ namespace Monster
                     securityTable.Add(_security.SecurityType, _security);
             }
 
-            StartCoroutine(SelectPlayerCoroutine(SecurityType.A));
+            changeControlProcess = StartCoroutine(SelectPlayerCoroutine(SecurityType.BRIGHT));
+
+            playerControl = new PlayerControl();
+            playerControl.PlayerSelection.Enable();
+            playerControl.PlayerSelection.ChangePlayerControl.performed += _context =>
+            {
+                if (changeControlProcess != null)
+                {
+                    StopCoroutine(changeControlProcess);
+                    changeControlProcess = null;
+                }
+                
+                ControlIndex = (int)SelectedPlayer.SecurityType + 1;
+                
+                if (ControlIndex > 3)
+                    ControlIndex = 0;
+
+                var _nextPlayerType = (SecurityType)ControlIndex;
+                
+                changeControlProcess = StartCoroutine(SelectPlayerCoroutine(_nextPlayerType));
+            };
         }
 
         public IEnumerator SelectPlayerCoroutine(SecurityType _securityType)
         {
+            foreach (var _security in securityTable.Values)
+                _security.OnEndBeingControlled();
+            
             if(!securityTable.TryGetValue(_securityType, out var _targetPlayer))
                 yield break;
 
-            yield return cameraManager.MoveAnchorToCoroutine(_targetPlayer.transform.position);
-            
-            foreach (var _kvp in securityTable)
+            yield return RenderControl.ScaleLightDown();
+
+            yield return cameraManager.MoveAnchorToCoroutine(_targetPlayer.transform.position, _pos =>
             {
-                var _type     = _kvp.Key;
-                var _security = _kvp.Value;
-                
-                if (_type == _securityType)
-                {
-                    _security.IsControlled = true;
-                    SelectedPlayer = _security;
-                    continue;
-                }
-                
-                _security.IsControlled = false;
-            }
+                RenderControl.SetLightPosition(_pos);
+            });
+            
+            yield return RenderControl.ScaleLightUp();
+            
+            SelectedPlayer = _targetPlayer;
+            SelectedPlayer.OnStartBeingControlled();
         }
     }
 }

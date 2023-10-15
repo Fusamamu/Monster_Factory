@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 734088647}
   - component: {fileID: 734088650}
-  - component: {fileID: 734088649}
   - component: {fileID: 734088648}
   m_Layer: 0
   m_Name: Camera
@@ -77,14 +76,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &734088649
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734088646}
-  m_Enabled: 1
 --- !u!114 &734088648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,12 +576,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afa9746e3b4c491f808c477177b8f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SecurityType>k__BackingField: 0
   <Animator>k__BackingField: {fileID: 4177265130351734521}
   <NavMeshAgent>k__BackingField: {fileID: 688175821}
   <TargetTransform>k__BackingField: {fileID: 8005302636603536515}
   <ShootTarget>k__BackingField: {fileID: 0}
   RenderControl: {fileID: 688175819}
-  CameraController: {fileID: 0}
+  CameraManager: {fileID: 0}
   IsShooting: 0
   ShootInterval: 0.7
   BulletPool: {fileID: 6444362504414057877}
