@@ -10,20 +10,19 @@ namespace Monster
     [Serializable]
     public class CameraPositionUpdateEvent : UnityEvent <Vector3> {}
     
-    public class CameraController : MonoBehaviour, IInitializable
+    public class CameraManager : Service
     {
-        public bool IsInit { get; private set; }
-        
         [field: SerializeField] public Camera    MainCamera   { get; private set; }
         [field: SerializeField] public Transform AnchorTarget { get; private set; }
 
         [SerializeField] private float CameraSpeed;
+        [SerializeField] private float MoveToTargetSpeed;
 
         private CameraControl cameraControl;
 
         [SerializeField] public CameraPositionUpdateEvent CameraPositionUpdateEvent = new ();
         
-        public void Init()
+        public override void Init()
         {
             if(IsInit)
                 return;
@@ -65,6 +64,22 @@ namespace Monster
                 MainCamera.transform.position += -(MainCamera.transform.forward) * CameraSpeed;
             
             CameraPositionUpdateEvent?.Invoke(AnchorTarget.transform.position);
+        }
+
+        public IEnumerator MoveAnchorToCoroutine(Vector3 _targetPos)
+        {
+            var _totalDist = Vector3.Distance(AnchorTarget.position, _targetPos);
+        
+            float _distanceCovered = 0.0f;
+            
+            while (_distanceCovered < _totalDist)
+            {
+                float _distanceThisFrame = MoveToTargetSpeed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, _targetPos, _distanceThisFrame);
+                _distanceCovered += _distanceThisFrame;
+                
+                yield return null;
+            }
         }
 
         private void MoveLeft(InputAction.CallbackContext _context)

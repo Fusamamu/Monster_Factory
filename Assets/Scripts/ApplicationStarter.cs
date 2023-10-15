@@ -8,7 +8,7 @@ namespace Monster
 {
     public class ApplicationStarter : MonoBehaviour
     {
-        [SerializeField] private CameraController CameraController;
+        [SerializeField] private CameraManager CameraManager;
 
         private void Start()
         {
@@ -16,8 +16,8 @@ namespace Monster
             foreach (var _character in _allCharacter)
                 _character.Init();
             
-            if(CameraController)
-                CameraController.Init();
+            if(CameraManager)
+                CameraManager.Init();
         }
     }
 }

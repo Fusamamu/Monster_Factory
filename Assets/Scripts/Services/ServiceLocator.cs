@@ -26,14 +26,8 @@ namespace Monster
 
         private void Start()
         {
-            // Get<DataManager>    ().Init();
-            // Get<AudioManager>   ().Init();
-            // Get<UIManager>      ().Init();
-            // Get<ParticleManager>().Init();
-            // Get<PlayerManager>  ().Init();
-            // Get<BulletManager>  ().Init();
-            // Get<EnemyManager>   ().Init();
-            // Get<LevelManager>   ().Init();
+            Get<CameraManager>().Init();
+            Get<PlayerManager>().Init();
         }
 
         public void Add<T>(T _gui) where T : Service
@@ -49,6 +43,5 @@ namespace Monster
 
             return null;
         }
-       
     }
 }

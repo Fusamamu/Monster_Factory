@@ -7,15 +7,22 @@ using UnityEngine.InputSystem;
 
 namespace Monster
 {
+    public enum SecurityType
+    {
+        A, B, C, D
+    }
+    
     public class Security : MonoBehaviour, ICharacter
     {
-        public bool IsInit { get; private set; }
-
+        [field: SerializeField] public SecurityType SecurityType { get; private set; }
+        
+        public bool IsInit    { get; private set; }
         public bool IsVisible { get; private set; } = true;
         
+        public bool IsControlled { get; set; }
         public bool IsTargetLock { get; set; }
 
-        [field: SerializeField] public Animator Animator { get; private set; }
+        [field: SerializeField] public Animator     Animator     { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
 
         private Vector3 destinationPos;
@@ -23,8 +30,8 @@ namespace Monster
         [field: SerializeField] public Transform TargetTransform { get; private set; }
         [field: SerializeField] public Transform ShootTarget     { get; private set;  }
         
-        [SerializeField] private RenderControl    RenderControl;
-        [SerializeField] private CameraController CameraController;
+        [SerializeField] private RenderControl  RenderControl;
+        [SerializeField] private CameraManager CameraManager;
 
         /*Shooting setting*/
         [SerializeField] private bool IsShooting;
@@ -34,10 +41,8 @@ namespace Monster
         private Coroutine shootingProcess;
 
         private readonly List<IVisible>   allVisibleInRange   = new List<IVisible>();
-        private readonly List<IShootAble> allShootAbleInRange = new List<IShootAble>();
+        private readonly List<IAttackAble> allShootAbleInRange = new List<IAttackAble>();
         
-        // private static readonly int isAnimatorRunning  = Animator.StringToHash("IsRunning");
-        // private static readonly int isAnimatorShooting = Animator.StringToHash("IsShooting");
 
         private Camera mainCam;
         
@@ -51,6 +56,8 @@ namespace Monster
             RenderControl.Init();
 
             mainCam = Camera.main;
+
+            CameraManager = ServiceLocator.Instance.Get<CameraManager>();
         }
         
         public void SetVisible(bool _value)
@@ -61,7 +68,7 @@ namespace Monster
 
         private void Update()
         {
-            if(!IsInit)
+            if(!IsInit || !IsControlled)
                 return;
             
             if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -89,14 +96,14 @@ namespace Monster
             var _position = TargetTransform.position;
             RenderControl.SetLightPosition(_position);
             
-            if(CameraController)
-                CameraController.AnchorTarget.position = _position;
+            if(CameraManager)
+                CameraManager.AnchorTarget.position = _position;
 
             if (IsShooting)
             {
                 foreach (var _visible in allVisibleInRange)
                 {
-                    if (_visible is IShootAble _shootAble)
+                    if (_visible is IAttackAble _shootAble)
                     {
                         if(_shootAble.IsTargetLock)
                             continue;
@@ -160,7 +167,7 @@ namespace Monster
             {
                 _visible.SetVisible(true);
 
-                if (_visible is IShootAble _shootAble)
+                if (_visible is IAttackAble _shootAble)
                 {
                     StartShooting();
 

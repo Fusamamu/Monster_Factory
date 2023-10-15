@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Monster
 {
-    public interface ICharacter : IShootAble, IInitializable
+    public interface ICharacter : IAttackAble, IInitializable
     {
-      
+        
     }
 }
