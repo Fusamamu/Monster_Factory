@@ -36783,6 +36783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1511728797}
   - component: {fileID: 1511728798}
+  - component: {fileID: 1511728799}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -36818,6 +36819,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SelectedPlayer>k__BackingField: {fileID: 0}
+  ControlIndex: 0
+  RenderControl: {fileID: 1511728799}
+--- !u!114 &1511728799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511728796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8832a4edffba64786a8c63c198db8816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetRenderer: {fileID: 0}
+  TargetMaterial: {fileID: 2100000, guid: dceac505d6d5b4ca685db854d859be44, type: 2}
+  InvisibleMaterial: {fileID: 0}
+  MainRadiusValue: 4
+  SecondaryRadiusValue: 4.5
+  TValue: 0
+  RadiusAnimation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0026789606
+      value: 0.9694606
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.34738463
+      value: 0.99907243
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7731848
+      value: 0.9574978
+      inSlope: -0.0039148093
+      outSlope: -0.0039148093
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15377963
+    - serializedVersion: 3
+      time: 1.0401106
+      value: 0.9694606
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1512224239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6968189206526006, guid: 3c82eaa6488bd4ed2a725a5484f61f29,

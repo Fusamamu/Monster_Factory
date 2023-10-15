@@ -9,7 +9,10 @@ namespace Monster
 {
     public enum SecurityType
     {
-        KAMEE, AI, BRIGHT, POOM
+        KAMEE = 0, 
+        AI,
+        BRIGHT,
+        POOM
     }
     
     public class Security : MonoBehaviour, ICharacter, IAttackAble
@@ -30,7 +33,7 @@ namespace Monster
         private Vector3 destinationPos;
         
         [field: SerializeField] public Transform TargetTransform { get; private set; }
-        [field: SerializeField] public Transform AttackTarget     { get; private set;  }
+        [field: SerializeField] public Transform AttackTarget    { get; private set; }
 
         [SerializeField] private ColliderControl ColliderControl;
         [SerializeField] private RenderControl   RenderControl;
@@ -44,7 +47,7 @@ namespace Monster
         [SerializeField] private Transform BulletSpawnTarget;
         private Coroutine shootingProcess;
 
-        private readonly List<IVisible>   allVisibleInRange   = new List<IVisible>();
+        private readonly List<IVisible>    allVisibleInRange   = new List<IVisible>();
         private readonly List<IAttackAble> allShootAbleInRange = new List<IAttackAble>();
 
         private Camera mainCam;

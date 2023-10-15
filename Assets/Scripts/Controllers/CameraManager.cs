@@ -66,7 +66,7 @@ namespace Monster
             CameraPositionUpdateEvent?.Invoke(AnchorTarget.transform.position);
         }
 
-        public IEnumerator MoveAnchorToCoroutine(Vector3 _targetPos)
+        public IEnumerator MoveAnchorToCoroutine(Vector3 _targetPos, Action<Vector3> _onPosUpdate)
         {
             var _totalDist = Vector3.Distance(AnchorTarget.position, _targetPos);
         
@@ -74,9 +74,14 @@ namespace Monster
             
             while (_distanceCovered < _totalDist)
             {
+                var _position = transform.position;
+                
                 float _distanceThisFrame = MoveToTargetSpeed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, _targetPos, _distanceThisFrame);
+                _position = Vector3.MoveTowards(_position, _targetPos, _distanceThisFrame);
+                transform.position = _position;
                 _distanceCovered += _distanceThisFrame;
+
+                _onPosUpdate?.Invoke(_position);
                 
                 yield return null;
             }
