@@ -26,6 +26,7 @@ namespace Monster
 
         private void Start()
         {
+            Get<UIManager>    ().Init();
             Get<CameraManager>().Init();
             Get<PlayerManager>().Init();
         }

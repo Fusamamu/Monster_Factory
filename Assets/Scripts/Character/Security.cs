@@ -51,7 +51,9 @@ namespace Monster
         private readonly List<IAttackAble> allShootAbleInRange = new List<IAttackAble>();
 
         private Camera mainCam;
-        
+
+        [field: SerializeField] public List<Scientist> AllFollowScientists { get; private set; } = new List<Scientist>();
+
         public void Init()
         {
             if(IsInit)
@@ -209,7 +211,10 @@ namespace Monster
             }
 
             if (_other.TryGetComponent<Scientist>(out var _scientist))
-                _scientist.OnFoundHandler(transform);
+            {
+                _scientist.OnStartFollowHandler(this);
+                AllFollowScientists.Add(_scientist);
+            }
         }
         
         private void OnTriggerExit(Collider _other)

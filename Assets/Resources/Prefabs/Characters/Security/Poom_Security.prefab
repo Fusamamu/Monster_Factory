@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4123124391327832189, guid: 6232c5e0796094d4db7079b6a2bf25de,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: e76567eea68ed4eb4abf0c7b9e9c1265, type: 2}
     - target: {fileID: 4123124391349186427, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
       propertyPath: <SecurityType>k__BackingField

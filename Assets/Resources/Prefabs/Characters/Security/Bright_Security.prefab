@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4123124391327832189, guid: 6232c5e0796094d4db7079b6a2bf25de,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: c3bfcf4de197b43f3a318cd08ff32764, type: 2}
     - target: {fileID: 4123124391349186427, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
       propertyPath: <SecurityType>k__BackingField
@@ -20,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 6206184158605680948, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.91
       objectReference: {fileID: 0}
     - target: {fileID: 6206184158605680948, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
@@ -30,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 6206184158605680948, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.02
       objectReference: {fileID: 0}
     - target: {fileID: 6206184158605680948, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}

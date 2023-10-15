@@ -4,18 +4,11 @@ using UnityEngine;
 
 namespace Monster
 {
-    public class CharacterState : MonoBehaviour
+    public enum CharacterState
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        IDLE,
+        RUNNING,
+        FOLLOW,
+        MOVE_TO_GOAL,
     }
 }

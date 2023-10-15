@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4123124391327832189, guid: 6232c5e0796094d4db7079b6a2bf25de,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 48f67b94c323f45bda373a10dafc7638, type: 2}
     - target: {fileID: 6206184158605680948, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
       propertyPath: m_RootOrder
@@ -25,7 +30,7 @@ PrefabInstance:
     - target: {fileID: 6206184158605680948, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6206184158605680948, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
@@ -65,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 6731503964546235278, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
       propertyPath: m_Name
-      value: SecurityBase
+      value: Kamee_Security
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6232c5e0796094d4db7079b6a2bf25de, type: 3}
