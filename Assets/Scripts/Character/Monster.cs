@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Monster
 {
@@ -30,6 +31,7 @@ namespace Monster
         private Quaternion targetRotation;
 
         [SerializeField] private float rotationSpeed;
+        [SerializeField] private FieldOfView fieldOfView;
 
         public void Init()
         {
@@ -59,7 +61,41 @@ namespace Monster
 
         private void Update()
         {
+            GetNearestTarget();
             BehaviourTree.Tick();
+        }
+
+        public void GetNearestTarget()
+        {
+            if (fieldOfView.VisibleTarget.Count == 0)
+            {
+                FollowTarget = null;
+                return;
+            }
+
+            float distance = (fieldOfView.VisibleTarget[0].transform.position - transform.position).magnitude;
+
+            Transform nearestTargetTransform = fieldOfView.VisibleTarget[0];
+
+            foreach(var target in fieldOfView.VisibleTarget)
+            {
+                if (target.GetComponent<ICharacter>() is null)
+                {
+                    nearestTargetTransform = null;
+                    continue;
+                }
+
+                var newDistance = (target.transform.position - transform.position).magnitude;
+
+                if (distance > newDistance)
+                    nearestTargetTransform = target;
+
+            }
+
+            FollowTarget = nearestTargetTransform;
+
+            if (FollowTarget != null)
+                Debug.DrawLine(transform.position, FollowTarget.transform.position, Color.red);
         }
 
         public void SetVisible(bool _value)
