@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace Monster
 {
-    public interface IAttackAble : IVisible
-    {
-        public Transform ShootTarget { get; }
+    public interface IAttackAble 
+    { 
+        public Transform AttackTarget { get; }
         public bool IsTargetLock { get; set; }
+
+        public void Attack(IDamageable _attackTarget) { }
     }
 }

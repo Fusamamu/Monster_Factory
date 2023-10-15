@@ -12,7 +12,7 @@ namespace Monster
         A, B, C, D
     }
     
-    public class Security : MonoBehaviour, ICharacter
+    public class Security : MonoBehaviour, ICharacter, IAttackAble
     {
         [field: SerializeField] public SecurityType SecurityType { get; private set; }
         
@@ -28,8 +28,11 @@ namespace Monster
         private Vector3 destinationPos;
         
         [field: SerializeField] public Transform TargetTransform { get; private set; }
-        [field: SerializeField] public Transform ShootTarget     { get; private set;  }
-        
+        [field: SerializeField] public Transform AttackTarget     { get; private set;  }
+
+        public int HP { get => hp; private set => hp = value; }
+
+        [SerializeField] private int hp;
         [SerializeField] private RenderControl  RenderControl;
         [SerializeField] private CameraManager CameraManager;
 
@@ -110,7 +113,7 @@ namespace Monster
                         
                         _shootAble.IsTargetLock = true;
                          
-                        shootingProcess = StartCoroutine(ShootBulletCoroutine(_shootAble.ShootTarget.position));
+                        shootingProcess = StartCoroutine(ShootBulletCoroutine(_shootAble.AttackTarget.position));
                     }
                 }
             }
