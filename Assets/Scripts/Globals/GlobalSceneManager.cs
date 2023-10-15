@@ -11,7 +11,7 @@ namespace Monster
 	public static class SceneName
 	{
 		public static string GameplayScene  = "GameplayScene";
-		public static string StartMenuScene = "StartMenuScene";
+		public static string StartMenuScene = "StartScene";
 	}
     
 	public class GlobalSceneManager : MonoBehaviour
@@ -19,6 +19,8 @@ namespace Monster
 		public static GlobalSceneManager Instance { get; private set; }
 
 		public MMF_Player OnTransitionAnimation;
+
+		public GameObject Disclaimer;
 		
 		private void Awake()
 		{
@@ -40,6 +42,11 @@ namespace Monster
 		{
 			StartCoroutine(LoadSceneAsync(_name));
 		}
+		
+		public void LoadNewGameScene(string _name)
+		{
+			StartCoroutine(LoadNewGameAsync(_name));
+		}
 
 		public IEnumerator LoadSceneAsync(string _name)
 		{
@@ -54,6 +61,33 @@ namespace Monster
 				yield return null;
             
 			yield return new WaitForSeconds(0.33f);
+
+			OnTransitionAnimation.Direction = MMFeedbacks.Directions.BottomToTop;
+			OnTransitionAnimation.PlayFeedbacks();
+		}
+		
+		public IEnumerator LoadNewGameAsync(string _name)
+		{
+			OnTransitionAnimation.Direction = MMFeedbacks.Directions.TopToBottom;
+			OnTransitionAnimation.PlayFeedbacks();
+
+			yield return new WaitUntil(() => !OnTransitionAnimation.IsPlaying);
+			
+			
+			Disclaimer.SetActive(true);
+			
+			yield return new WaitForSeconds(3f);
+			
+			AsyncOperation _loadSceneAsync = SceneManager.LoadSceneAsync(_name);
+
+			while (!_loadSceneAsync.isDone)
+				yield return null;
+            
+			yield return new WaitForSeconds(0.33f);
+			
+			
+			
+			Disclaimer.SetActive(false);
 
 			OnTransitionAnimation.Direction = MMFeedbacks.Directions.BottomToTop;
 			OnTransitionAnimation.PlayFeedbacks();

@@ -15,13 +15,13 @@ namespace Monster
 				return;
 			IsInit = true;
 
-			// var _guis = FindObjectsOfType<GUI>();
-			//
-			// foreach (var _gui in _guis)
-			// {
-			// 	_gui.Init();
-			// 	Add(_gui);
-			// }
+			var _guis = FindObjectsOfType<GUI>(true);
+			
+			foreach (var _gui in _guis)
+			{
+				_gui.Init();
+				Add(_gui);
+			}
 		}
 
 		private void Add<T>(T _gui) where T : GUI

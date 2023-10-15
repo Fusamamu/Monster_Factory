@@ -77,6 +77,11 @@ namespace Monster
             
             SelectedPlayer = _targetPlayer;
             SelectedPlayer.OnStartBeingControlled();
+            
+            ServiceLocator.Instance
+                .Get<UIManager>()
+                .Get<CharacterDisplayGUI>()
+                .OnCharacterControlChanged(SelectedPlayer);
         }
     }
 }

@@ -1674,7 +1674,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 223536849}
         m_TargetAssemblyTypeName: Monster.GlobalSceneManager, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: LoadNewGameScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
