@@ -184,9 +184,11 @@ namespace Monster
 
             if (_other.TryGetComponent<Scientist>(out var _scientist))
             {
-                _scientist.IsFound   = true;
-                _scientist.TargetPos = TargetTransform.position;
-                _scientist.FollowTarget = TargetTransform;
+                // _scientist.IsFound   = true;
+                // _scientist.TargetPos = TargetTransform.position;
+                // _scientist.FollowTarget = TargetTransform;
+
+                _scientist.OnFoundHandler(transform);
             }
         }
         
@@ -194,7 +196,7 @@ namespace Monster
         {
             if (_other.TryGetComponent<IVisible>(out var _visible))
             {
-                _visible.SetVisible(false);
+                //_visible.SetVisible(false);
                 allVisibleInRange.Remove(_visible);
             }
         }
