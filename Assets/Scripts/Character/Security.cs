@@ -212,6 +212,7 @@ namespace Monster
 
             if (_other.TryGetComponent<Scientist>(out var _scientist))
             {
+                Debug.Log("Found Scientist");
                 _scientist.OnStartFollowHandler(this);
                 AllFollowScientists.Add(_scientist);
             }

@@ -147,6 +147,8 @@ namespace Monster
                     
             Animator.SetBool(AnimHash.IsCelebrate, true);
             IsFound = true;
+
+            yield return new WaitForSeconds(2.5f);
         }
     }
 }

@@ -24,8 +24,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
         type: 3}
@@ -35,7 +50,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.23
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
         type: 3}
@@ -426,6 +441,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  LightScaleSpeed: 10
 --- !u!114 &5483092686206263741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,17 +454,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b59fb50c332442c987489ceb92d4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsTargetLock>k__BackingField: 0
   <RenderControl>k__BackingField: {fileID: 4447565576994796619}
   <Animator>k__BackingField: {fileID: 4177265130351734521}
   <NavMeshAgent>k__BackingField: {fileID: 688175821}
-  <ShootTarget>k__BackingField: {fileID: 8005302636603536515}
   IsFound: 0
+  FollowSecurity: {fileID: 0}
   FollowTarget: {fileID: 0}
   TargetPos: {x: 0, y: 0, z: 0}
   rotationSpeed: 7
---- !u!4 &8005302636603536515 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fdcc2ea0b4a59d44ebb86899c1f72c78,
-    type: 3}
-  m_PrefabInstance: {fileID: 7535143576636560232}
-  m_PrefabAsset: {fileID: 0}
