@@ -1166,7 +1166,7 @@ Transform:
   m_GameObject: {fileID: 6731503964546235278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4642091683413756911}
@@ -1271,6 +1271,7 @@ MonoBehaviour:
   ShootInterval: 0.7
   BulletPool: {fileID: 6941945075331694626}
   BulletSpawnTarget: {fileID: 3714562708416126297}
+  <AllFollowScientists>k__BackingField: []
 --- !u!114 &6941945075331694626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,6 +1346,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  LightScaleSpeed: 10
 --- !u!114 &8430686687389370854
 MonoBehaviour:
   m_ObjectHideFlags: 0
