@@ -32,6 +32,7 @@ namespace Monster
 
         [SerializeField] private float rotationSpeed;
         [SerializeField] private FieldOfView fieldOfView;
+        [SerializeField] private AttackController attackController;
 
         public void Init()
         {
@@ -47,6 +48,17 @@ namespace Monster
                         .Do("Chase Target", () => 
                         {
                             NavMeshAgent.SetDestination(FollowTarget.transform.position);
+                            return TaskStatus.Success;
+                        })
+                        .Condition(() => (FollowTarget.position - transform.position).magnitude <= attackController.AttackRange)
+                        .Do("Attack Target", () =>
+                        {
+                            var attackTarget = FollowTarget.GetComponent(typeof(IDamageable)) as IDamageable;
+
+                            if (attackTarget is null)
+                                return TaskStatus.Failure;
+
+                            attackController.AttackTarget(this, attackTarget);
                             return TaskStatus.Success;
                         })
                     .End()
@@ -96,6 +108,11 @@ namespace Monster
 
             if (FollowTarget != null)
                 Debug.DrawLine(transform.position, FollowTarget.transform.position, Color.red);
+        }
+
+        public void Attack(IDamageable _attackTarget, int _damage) 
+        {
+            //_attackTarget.ReceiveDamage(_damage);
         }
 
         public void SetVisible(bool _value)

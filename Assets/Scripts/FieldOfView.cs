@@ -26,9 +26,16 @@ namespace Monster
 
             foreach (Collider collider in targetColliders)
             {
-                if (Physics.Raycast(transform.position, collider.transform.position - transform.position, viewRadius, targetLayerMask))
+
+                if (Physics.Raycast(transform.position, collider.transform.position - transform.position, out var hit, viewRadius))
                 {
                     Debug.DrawLine(transform.position, collider.transform.position, Color.green);
+
+                    //if (!((1 << hit.transform.gameObject.layer) == targetLayerMask.value))
+                    //{
+                    //    Debug.Log("obstacle");
+                    //    continue;
+                    //}
 
                     if (!visibleTarget.Contains(collider.transform))
                     {
