@@ -12,7 +12,7 @@ namespace Monster
 
         public bool IsVisible { get; private set; } = false;
         
-        public int HP { get; private set; }
+        [field:SerializeField] public int HP { get; private set; }
         
         [field: SerializeField] public bool IsTargetLock { get; set; }
         
@@ -104,6 +104,15 @@ namespace Monster
         
         public void ReceiveDamage(int _damage)
         {
+            HP -= _damage;
+
+            Debug.Log(gameObject.name + " recieved " + _damage + " current hp is now " + HP);
+
+            if (HP <= 0)
+            {
+                Debug.Log(gameObject.name + " died!");
+                Destroy(gameObject);
+            }
         }
 
         public void SetVisible(bool _value)

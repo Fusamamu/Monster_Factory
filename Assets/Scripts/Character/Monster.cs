@@ -112,7 +112,8 @@ namespace Monster
 
         public void Attack(IDamageable _attackTarget, int _damage) 
         {
-            //_attackTarget.ReceiveDamage(_damage);
+            Debug.DrawLine(transform.position, FollowTarget.transform.position, Color.yellow);
+            _attackTarget.ReceiveDamage(_damage);
         }
 
         public void SetVisible(bool _value)
