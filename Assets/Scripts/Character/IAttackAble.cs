@@ -9,6 +9,6 @@ namespace Monster
         public Transform AttackTarget { get; }
         public bool IsTargetLock { get; set; }
 
-        public void Attack(IDamageable _attackTarget) { }
+        public void Attack(IDamageable _attackTarget, int _damage) { }
     }
 }
