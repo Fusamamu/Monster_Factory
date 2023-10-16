@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.AI;
 using CleverCrow.Fluid.BTs.Tasks;
@@ -25,16 +26,18 @@ namespace Monster
 
         public bool IsFound;
         public Security FollowSecurity;
-        public Transform FollowTarget;
         public Vector3 TargetPos;
         private Quaternion targetRotation;
 
         [SerializeField] private float rotationSpeed;
 
+        private float coolDown;
+        private bool isFinishCelebrated;
+        private bool canStartFollow = true;
         private bool isFollowing;
-        private bool isRunning;
 
-       // public CharacterState CharacterState = CharacterState.IDLE;
+        private float stopDistance  = 1.5f;
+        private float breakDistance = 3.0f;
         
         public void Init()
         {
@@ -42,61 +45,44 @@ namespace Monster
                 return;
             IsInit = true;
 
-            //SetVisible(false);
-            
-            BehaviourTree = new BehaviorTreeBuilder(gameObject)
-                //.Selector()
-                    .Sequence()
-                    .Condition(("Can Follow Target"), () =>
-                    {
-                        if (!IsFound)
-                            return false;
-                          
-                        var _dist = Vector3.Distance(transform.position, FollowTarget.position);
-                        if (_dist < 2.5f)
-                            return false;
-
-                        return true;
-                    })
-                    .Do("Start Follow", () =>
-                    {
-                        isRunning = true;
-                        Animator.SetBool(AnimHash.IsRunning, true);
-                        NavMeshAgent.isStopped = false;
-                        NavMeshAgent.SetDestination(FollowTarget.position + Vector3.back * 2.5f);
-                        
-                        return TaskStatus.Success;
-                    })
-                    .Do("Follow Target", () =>
-                    {
-                        if (isRunning)
-                            return TaskStatus.Continue;
-                        
-                        return TaskStatus.Success;
-                    })
-                    .End()
-                //.End()
-                .Build();
+            NavMeshAgent.stoppingDistance = 1.5f;
         }
         
         private void Update () 
         {
-            BehaviourTree.Tick();
+            if(FollowSecurity == null || !isFinishCelebrated)
+                return;
             
-            if (!NavMeshAgent.pathPending)
+            float _distanceToTarget = Vector3.Distance(transform.position, FollowSecurity.transform.position);
+
+            if (_distanceToTarget > breakDistance)
             {
-                if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance)
-                    if (!NavMeshAgent.hasPath || NavMeshAgent.velocity.sqrMagnitude == 0f)
-                    {
-                        isRunning = false;
-                        Animator.SetBool(AnimHash.IsRunning, false);
-                    }
+                OnStopFollowHandler();
+                return;
+            }
+            
+            if (_distanceToTarget > stopDistance)
+            {
+                Animator.SetBool(AnimHash.IsRunning, true);
+                NavMeshAgent.isStopped = false;
+                NavMeshAgent.SetDestination(FollowSecurity.transform.position);
+            }
+            else
+            {
+                Animator.SetBool(AnimHash.IsRunning, false);
+                NavMeshAgent.isStopped = true;
+            }
+            
+            Vector3 _directionToTarget = (FollowSecurity.transform.position - transform.position).normalized;
+            if (_directionToTarget != Vector3.zero)
+            {
+                Quaternion _targetRotation = Quaternion.LookRotation(_directionToTarget);
+                transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, Time.deltaTime * NavMeshAgent.angularSpeed);
             }
         }
 
         public void MoveTo(Vector3 _targetPos)
         {
-            isRunning = true;
             Animator.SetBool(AnimHash.IsRunning, true);
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(_targetPos);
@@ -122,15 +108,29 @@ namespace Monster
 
         public void OnStartFollowHandler(Security _security)
         {
+            if(isFinishCelebrated)
+                return;
+            
             FollowSecurity = _security;
             TargetPos      = _security.transform.position;
-            FollowTarget   = _security.transform;
             StartCoroutine(CelebrateCoroutine());
         }
 
         public void OnStopFollowHandler()
         {
+            if(!isFollowing)
+                return;
             
+            Debug.Log("Stop Follow");
+                
+            isFollowing        = false;
+            isFinishCelebrated = false;
+            FollowSecurity     = null;
+            
+            Animator.SetBool(AnimHash.IsRunning  , false);
+            Animator.SetBool(AnimHash.IsCelebrate, false);
+            Animator.SetBool(AnimHash.IsTerrified, true);
+            NavMeshAgent.isStopped = true;
         }
 
         private IEnumerator CelebrateCoroutine()
@@ -145,10 +145,21 @@ namespace Monster
                 yield return null;
             }
                     
-            Animator.SetBool(AnimHash.IsCelebrate, true);
             IsFound = true;
-
+            Animator.SetBool(AnimHash.IsCelebrate, true);
+            Animator.SetBool(AnimHash.IsTerrified, false);
             yield return new WaitForSeconds(2.5f);
+
+            isFinishCelebrated = true;
+            isFollowing        = true;
+            
+            Debug.Log("Start Follow");
+        }
+        
+        private IEnumerator WaitForStateToFinish(string _stateName)
+        {
+            if (Animator.HasState(0, Animator.StringToHash(_stateName)))
+                yield return new WaitUntil(() => !Animator.GetCurrentAnimatorStateInfo(0).IsName(_stateName));
         }
     }
 }

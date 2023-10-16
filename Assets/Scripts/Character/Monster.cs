@@ -53,12 +53,12 @@ namespace Monster
                         .Condition(() => (FollowTarget.position - transform.position).magnitude <= attackController.AttackRange)
                         .Do("Attack Target", () =>
                         {
-                            var attackTarget = FollowTarget.GetComponent(typeof(IDamageable)) as IDamageable;
+                            var _attackTarget = FollowTarget.GetComponent(typeof(IDamageable)) as IDamageable;
 
-                            if (attackTarget is null)
+                            if (_attackTarget is null)
                                 return TaskStatus.Failure;
 
-                            attackController.AttackTarget(this, attackTarget);
+                            attackController.AttackTarget(this, _attackTarget);
                             return TaskStatus.Success;
                         })
                     .End()

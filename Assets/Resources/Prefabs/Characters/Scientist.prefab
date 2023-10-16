@@ -460,6 +460,5 @@ MonoBehaviour:
   <NavMeshAgent>k__BackingField: {fileID: 688175821}
   IsFound: 0
   FollowSecurity: {fileID: 0}
-  FollowTarget: {fileID: 0}
   TargetPos: {x: 0, y: 0, z: 0}
   rotationSpeed: 7

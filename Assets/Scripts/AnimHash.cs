@@ -9,5 +9,6 @@ namespace Monster
         public static readonly int IsRunning   = Animator.StringToHash("IsRunning");
         public static readonly int IsShooting  = Animator.StringToHash("IsShooting");
         public static readonly int IsCelebrate = Animator.StringToHash("IsCelebrate");
+        public static readonly int IsTerrified = Animator.StringToHash("IsTerrified");
     }
 }
