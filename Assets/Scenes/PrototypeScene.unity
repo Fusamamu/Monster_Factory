@@ -11532,6 +11532,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1785399318}
     m_Modifications:
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: MainRadiusValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: SecondaryRadiusValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: RadiusAnimation.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: RadiusAnimation.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: RadiusAnimation.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: RadiusAnimation.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: RadiusAnimation.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: RadiusAnimation.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: RadiusAnimation.m_Curve.Array.data[1].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: RadiusAnimation.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 335773351096550914, guid: fe5b394ebbacd4c2fba79467b514487c,
+        type: 3}
+      propertyPath: RadiusAnimation.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 6988378173588345584, guid: fe5b394ebbacd4c2fba79467b514487c,
         type: 3}
       propertyPath: m_Name
@@ -12953,6 +13008,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bright_Security
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010901022940125755, guid: ed9528caff9aa4247ae7b7f37002ea07,
+        type: 3}
+      propertyPath: MainRadiusValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010901022940125755, guid: ed9528caff9aa4247ae7b7f37002ea07,
+        type: 3}
+      propertyPath: SecondaryRadiusValue
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed9528caff9aa4247ae7b7f37002ea07, type: 3}
@@ -28935,7 +29000,7 @@ GameObject:
   - component: {fileID: 1152392520}
   - component: {fileID: 1152392521}
   m_Layer: 0
-  m_Name: 1
+  m_Name: Index_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30700,6 +30765,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1785399318}
     m_Modifications:
+    - target: {fileID: 71686068095622441, guid: 1f260a4cf54d14eb082037b3a6aa1be5,
+        type: 3}
+      propertyPath: MainRadiusValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 71686068095622441, guid: 1f260a4cf54d14eb082037b3a6aa1be5,
+        type: 3}
+      propertyPath: SecondaryRadiusValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7254721620090784219, guid: 1f260a4cf54d14eb082037b3a6aa1be5,
         type: 3}
       propertyPath: m_Name
@@ -32421,7 +32496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379242068}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8, y: 0, z: -38}
+  m_LocalPosition: {x: -23.3, y: 0, z: -32.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34969,8 +35044,8 @@ MonoBehaviour:
   TargetRenderer: {fileID: 0}
   TargetMaterial: {fileID: 2100000, guid: dceac505d6d5b4ca685db854d859be44, type: 2}
   InvisibleMaterial: {fileID: 0}
-  MainRadiusValue: 4
-  SecondaryRadiusValue: 4.5
+  MainRadiusValue: 3
+  SecondaryRadiusValue: 3.2
   TValue: 0
   RadiusAnimation:
     serializedVersion: 2
@@ -41744,7 +41819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903999379}
   m_LocalRotation: {x: 0.4344135, y: -0.31917226, z: 0.1679943, w: 0.8253435}
-  m_LocalPosition: {x: 7.51, y: 17.08, z: -9.52}
+  m_LocalPosition: {x: 3.12, y: 7.71, z: -4.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45291,6 +45366,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1785399318}
     m_Modifications:
+    - target: {fileID: 3201650540024763342, guid: aa2c6f750e425483988adc74275ba7d7,
+        type: 3}
+      propertyPath: MainRadiusValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201650540024763342, guid: aa2c6f750e425483988adc74275ba7d7,
+        type: 3}
+      propertyPath: SecondaryRadiusValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4861073287261314438, guid: aa2c6f750e425483988adc74275ba7d7,
         type: 3}
       propertyPath: m_RootOrder
