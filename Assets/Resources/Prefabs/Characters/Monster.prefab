@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   legPrefab: {fileID: 1682633662898237459, guid: fb7bce2dee9494540a1866bb5d230a51,
     type: 3}
-  numberOfLegs: 5
+  numberOfLegs: 6
   partsPerLeg: 4
   legCount: 0
   deployedLegs: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   legResolution: 40
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
-  newLegCooldown: 0.3
-  velocity: {x: 0.8953304, y: 0, z: -0.010252513}
+  newLegCooldown: 0.2
+  velocity: {x: 0.03207876, y: 0, z: 0.94130296}
 --- !u!114 &5105206464229223454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -210,6 +210,7 @@ MonoBehaviour:
   rotationSpeed: 0
   fieldOfView: {fileID: 1526901390096753992}
   attackController: {fileID: 3179344751156638003}
+  mimicControl: {fileID: 4521153465625292069}
 --- !u!114 &1526901390096753992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,4 +243,4 @@ MonoBehaviour:
   isAttack: 0
   attackRange: 2.35
   attackDelay: 0.5
-  damage: 25
+  damage: 20
