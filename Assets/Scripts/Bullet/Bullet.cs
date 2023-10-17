@@ -19,8 +19,12 @@ namespace Monster
         private Vector3 direction;
         private bool isFiring;
 
+        private static GameObject shotParticlePrefab;
+
         public void Initialized()
         {
+            if (shotParticlePrefab == null)
+                shotParticlePrefab = Resources.Load<GameObject>("Prefabs/ShotParticle");
             
         }
 
@@ -67,6 +71,16 @@ namespace Monster
         {
             if(!IsInPool)
                 Pool?.Release(this);
+        }
+
+        public void OnTriggerEnter(Collider _other)
+        {
+            if (_other.TryGetComponent<Monster>(out var _monster))
+            {
+                Instantiate(shotParticlePrefab, _monster.transform.position, Quaternion.identity);
+                ReturnToPool();
+                Debug.Log("hit monster");
+            }
         }
     }
 }

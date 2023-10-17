@@ -10,9 +10,9 @@ namespace Monster
         {
             var _bullet = Instantiate(Prefab);//, populationParent.transform);
 
-            _bullet.name = $"_person_";
+            _bullet.name = $"_bullet_";
             _bullet.SetPool(Pool);
-            //_person.Initialized();
+            _bullet.Initialized();
 
             return _bullet;
         }
