@@ -19,5 +19,10 @@ namespace Monster
             foreach (var _security in _allScientists)
                 AllScientists.Add(_security);
         }
+
+        public void OnScientistDeadHandler(Scientist _scientist)
+        {
+            AllScientists.Remove(_scientist);
+        }
     }
 }

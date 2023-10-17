@@ -29,6 +29,7 @@ namespace Monster
             Get<UIManager>    ().Init();
             Get<CameraManager>().Init();
             Get<PlayerManager>().Init();
+            Get<CharacterManager>().Init();
         }
 
         public void Add<T>(T _gui) where T : Service

@@ -11,7 +11,7 @@ namespace Monster
         [SerializeField] private int ControlIndex;
         [SerializeField] private RenderControl RenderControl;
         
-        private readonly Dictionary<SecurityType, Security> securityTable = new Dictionary<SecurityType, Security>();
+        public readonly Dictionary<SecurityType, Security> SecurityTable = new Dictionary<SecurityType, Security>();
 
         private PlayerControl playerControl;
         private CameraManager cameraManager;
@@ -31,8 +31,8 @@ namespace Monster
 
             foreach (var _security in _allSecurities)
             {
-                if (!securityTable.ContainsKey(_security.SecurityType))
-                    securityTable.Add(_security.SecurityType, _security);
+                if (!SecurityTable.ContainsKey(_security.SecurityType))
+                    SecurityTable.Add(_security.SecurityType, _security);
             }
 
             changeControlProcess = StartCoroutine(SelectPlayerCoroutine(SecurityType.BRIGHT));
@@ -73,10 +73,10 @@ namespace Monster
 
         public IEnumerator SelectPlayerCoroutine(SecurityType _securityType)
         {
-            foreach (var _security in securityTable.Values)
+            foreach (var _security in SecurityTable.Values)
                 _security.OnEndBeingControlled();
             
-            if(!securityTable.TryGetValue(_securityType, out var _targetPlayer))
+            if(!SecurityTable.TryGetValue(_securityType, out var _targetPlayer))
                 yield break;
 
             yield return RenderControl.ScaleLightDown();
@@ -97,9 +97,23 @@ namespace Monster
                 .OnCharacterControlChanged(SelectedPlayer);
         }
 
-        private void OnPlayDeadHandler()
+        public void OnSecurityDeadHandler(Security _security)
         {
+            var _allDead = true;
             
+            foreach (var _sec in SecurityTable.Values)
+            {
+                if (!_sec.IsDead)
+                {
+                    _allDead = false;
+                    break;
+                }
+            }
+
+            if (_allDead)
+                ServiceLocator
+                    .Instance.Get<UIManager>()
+                    .Get<SummaryGUI>().Open();
         }
     }
 }
