@@ -13561,6 +13561,11 @@ PrefabInstance:
       propertyPath: SecondaryRadiusValue
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8010901022940125756, guid: ed9528caff9aa4247ae7b7f37002ea07,
+        type: 3}
+      propertyPath: <HP>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed9528caff9aa4247ae7b7f37002ea07, type: 3}
 --- !u!4 &420373572 stripped
