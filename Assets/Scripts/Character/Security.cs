@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -189,6 +190,22 @@ namespace Monster
             allVisibleInRange.Clear();
         }
 
+        public void OnEnterZoneDetector(ZoneDetector _zoneDetector)
+        {
+            if (_zoneDetector.ZoneType == ZoneType.GOAL)
+            {
+                var _target = _zoneDetector.AllSubZoneRefs.First().ZoneTransform;
+                
+                foreach (var _scientist in AllFollowScientists)
+                {
+                    _scientist.OnStopFollowHandler();
+                    _scientist.MoveTo(_target.position);
+                }
+                
+                AllFollowScientists.Clear();
+            }
+        }
+
         private void OnTriggerEnter(Collider _other)
         {
             if (_other.TryGetComponent<IVisible>(out var _visible))
@@ -214,14 +231,19 @@ namespace Monster
             {
                 Debug.Log("Found Scientist");
                 _scientist.OnStartFollowHandler(this);
-                AllFollowScientists.Add(_scientist);
+                
+                if(!AllFollowScientists.Contains(_scientist))
+                    AllFollowScientists.Add(_scientist);
             }
         }
         
         private void OnTriggerExit(Collider _other)
         {
             if (_other.TryGetComponent<IVisible>(out var _visible))
+            {
+                _visible.SetVisible(false);
                 allVisibleInRange.Remove(_visible);
+            }
         }
     }
 }

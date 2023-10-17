@@ -25,11 +25,18 @@ namespace Monster
 
         [SerializeField] private float LightScaleSpeed = 10f;
 
+        private MaterialPropertyBlock propertyBlock;
+        private Coroutine alphaProcess;
+        private float alphaValue;
+        [SerializeField] private float AlphaSpeed = 5f;
+
         public void Init()
         {
             if(IsInit)
                 return;
             IsInit = true;
+            
+            propertyBlock = new MaterialPropertyBlock();
         }
 
         public void UseDefaultMaterial()
@@ -42,9 +49,57 @@ namespace Monster
             TargetRenderer.sharedMaterial = InvisibleMaterial;
         }
 
+        public void ToggleOnTransparent(Action _onComplete)
+        {
+            if (alphaProcess != null)
+            {
+                StopCoroutine(alphaProcess);
+                alphaProcess = null;
+            }
+            alphaProcess = StartCoroutine(TransparentOnCoroutine(_onComplete));
+        }
+
+        public void ToggleOffTransparent()
+        {
+            if (alphaProcess != null)
+            {
+                StopCoroutine(alphaProcess);
+                alphaProcess = null;
+            }
+            alphaProcess = StartCoroutine(TransparentOffCoroutine());
+        }
+
+        private IEnumerator TransparentOnCoroutine(Action _onComplete)
+        {
+            while (alphaValue < 1)
+            {
+                alphaValue += Time.deltaTime * AlphaSpeed;
+                SetTransparent(alphaValue);
+                yield return null;
+            }
+            alphaValue = 1;
+            SetTransparent(1);
+            _onComplete?.Invoke();
+        }
+        
+        private IEnumerator TransparentOffCoroutine()
+        {
+            while (alphaValue > 0)
+            {
+                alphaValue -= Time.deltaTime * AlphaSpeed;
+                SetTransparent(alphaValue);
+                yield return null;
+            }
+
+            alphaValue = 0;
+            SetTransparent(0);
+        }
+
         public void SetTransparent(float _value)
         {
-            InvisibleMaterial.color = new Color(0, 0, 0, _value);
+            //InvisibleMaterial.color = new Color(1, 1, 1, _value);
+            propertyBlock.SetColor("_Color", new Color(1, 1, 1, _value));
+            TargetRenderer.SetPropertyBlock (propertyBlock);
         }
 
         public void SetLightPosition(Vector3 _pos)

@@ -44,6 +44,10 @@ namespace Monster
             if(IsInit)
                 return;
             IsInit = true;
+            
+            RenderControl.Init();
+            
+            SetVisible(false);
 
             NavMeshAgent.stoppingDistance = 1.5f;
         }
@@ -95,14 +99,18 @@ namespace Monster
         public void SetVisible(bool _value)
         {
             IsVisible = _value;
+            
             if (!_value)
             {
                 RenderControl.UseInvisibleMaterial();
-                RenderControl.SetTransparent(0);
+                RenderControl.ToggleOffTransparent();
             }
             else
             {
-                RenderControl.UseDefaultMaterial();
+                RenderControl.ToggleOnTransparent(() =>
+                {
+                    RenderControl.UseDefaultMaterial();
+                });
             }
         }
 
