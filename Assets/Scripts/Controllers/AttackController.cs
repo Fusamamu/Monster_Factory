@@ -9,6 +9,8 @@ namespace Monster
     {
         public float AttackRange { get => attackRange; private set => attackRange = value; }
 
+        public float AttackDelay { get => attackDelay; private set => attackDelay = value; }
+
         [Header("Parameter")]
         [SerializeField] private bool isAttack;
         [SerializeField] private float attackRange;

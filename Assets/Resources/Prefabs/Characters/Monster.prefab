@@ -92,10 +92,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4521153465625292068}
-  - component: {fileID: 5105206465024869056}
-  - component: {fileID: 2472321821904197293}
   - component: {fileID: 4521153465625292069}
   - component: {fileID: 5105206464229223454}
+  - component: {fileID: 5105206465024869056}
   - component: {fileID: 7120078993703922539}
   - component: {fileID: 1526901390096753992}
   - component: {fileID: 3179344751156638003}
@@ -122,41 +121,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &5105206465024869056
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4521153465625292070}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!135 &2472321821904197293
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4521153465625292070}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.16
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4521153465625292069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   legPrefab: {fileID: 1682633662898237459, guid: fb7bce2dee9494540a1866bb5d230a51,
     type: 3}
-  numberOfLegs: 5
+  numberOfLegs: 6
   partsPerLeg: 4
   legCount: 0
   deployedLegs: 0
@@ -186,8 +150,8 @@ MonoBehaviour:
   legResolution: 40
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
-  newLegCooldown: 0.3
-  velocity: {x: -0.10217802, y: 0, z: 0.382794}
+  newLegCooldown: 0.2
+  velocity: {x: 0.03207876, y: 0, z: 0.94130296}
 --- !u!114 &5105206464229223454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +167,28 @@ MonoBehaviour:
   height: 0.8
   speed: 5
   velocityLerpCoef: 4
+--- !u!195 &5105206465024869056
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4521153465625292070}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &7120078993703922539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +210,7 @@ MonoBehaviour:
   rotationSpeed: 0
   fieldOfView: {fileID: 1526901390096753992}
   attackController: {fileID: 3179344751156638003}
+  mimicControl: {fileID: 4521153465625292069}
 --- !u!114 &1526901390096753992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,4 +243,4 @@ MonoBehaviour:
   isAttack: 0
   attackRange: 2.35
   attackDelay: 0.5
-  damage: 25
+  damage: 20

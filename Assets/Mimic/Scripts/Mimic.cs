@@ -141,7 +141,7 @@ namespace MimicSpace
         }
 
         // object pooling to limit leg instantiation
-        void RequestLeg(Vector3 footPosition, int legResolution, float maxLegDistance, float growCoef, Mimic myMimic, float lifeTime)
+        public void RequestLeg(Vector3 footPosition, int legResolution, float maxLegDistance, float growCoef, Mimic myMimic, float lifeTime)
         {
             GameObject newLeg;
             if (availableLegPool.Count > 0)

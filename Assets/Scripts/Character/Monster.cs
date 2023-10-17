@@ -1,5 +1,6 @@
 using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
+using MimicSpace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,7 @@ namespace Monster
         [SerializeField] private float rotationSpeed;
         [SerializeField] private FieldOfView fieldOfView;
         [SerializeField] private AttackController attackController;
+        [SerializeField] private Mimic mimicControl;
 
         public void Init()
         {
@@ -114,6 +116,7 @@ namespace Monster
         public void Attack(IDamageable _attackTarget, int _damage) 
         {
             Debug.DrawLine(transform.position, FollowTarget.transform.position, Color.yellow);
+            mimicControl.RequestLeg(FollowTarget.transform.position, mimicControl.legResolution, attackController.AttackRange,mimicControl.minGrowCoef, mimicControl, attackController.AttackDelay);
             _attackTarget.ReceiveDamage(_damage);
         }
 
