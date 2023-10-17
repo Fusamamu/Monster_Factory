@@ -55,7 +55,7 @@ namespace Monster
             
             RenderControl.Init();
             
-            SetVisible(false);
+            //SetVisible(false);
 
             NavMeshAgent.stoppingDistance = 1.5f;
         }
@@ -72,6 +72,9 @@ namespace Monster
                     if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance)
                         if (!NavMeshAgent.hasPath || NavMeshAgent.velocity.sqrMagnitude == 0f)
                             Animator.SetBool(AnimHash.IsRunning, false);
+
+                    if(!PlayerManager.MissionComplete)
+                        ServiceLocator.Instance.Get<CharacterManager>().OnScientistSaved(this);
                 }
                 return;
             }

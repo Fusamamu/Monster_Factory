@@ -17,11 +17,15 @@ namespace Monster
         private CameraManager cameraManager;
         private Coroutine changeControlProcess;
 
+        public static bool MissionComplete;
+
         public override void Init()
         {
             if(IsInit)
                 return;
             IsInit = true;
+
+            MissionComplete = false;
             
             RenderControl.Init();
 

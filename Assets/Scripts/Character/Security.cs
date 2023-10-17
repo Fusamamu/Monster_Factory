@@ -22,7 +22,7 @@ namespace Monster
         
         public bool IsInit    { get; private set; }
         public bool IsVisible { get; private set; } = true;
-        public bool IsDead    { get; private set; }
+        public bool IsDead    { get; set; }
         
         [field: SerializeField] public int HP { get; private set; }
         

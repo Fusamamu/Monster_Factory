@@ -6,6 +6,6 @@ namespace Monster
 {
     public interface ICharacter : IInitializable, IVisible, IDamageable
     {
-
+        public bool IsDead { get; set; }
     }
 }

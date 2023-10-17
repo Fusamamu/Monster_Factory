@@ -24,5 +24,28 @@ namespace Monster
         {
             AllScientists.Remove(_scientist);
         }
+
+        public void OnScientistSaved(Scientist _scientist)
+        {
+            var _allSaved = true;
+
+            foreach (var _scien in AllScientists)
+            {
+                if(_scien.IsDead)
+                    continue;
+
+                if (!_scien.IsSafe)
+                {
+                    _allSaved = false;
+                    break;
+                }
+            }
+
+            if (_allSaved)
+            {
+                PlayerManager.MissionComplete = true;
+                ServiceLocator.Instance.Get<UIManager>().Get<SummaryGUI>().Open();
+            }
+        }
     }
 }

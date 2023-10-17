@@ -15,6 +15,8 @@ namespace Monster
 
         public bool IsVisible { get; private set; } = false;
 
+        public bool IsDead { get; set; }
+        
         public bool IsTargetLock { get; set; }
 
         public Transform AttackTarget { get; private set; }
@@ -65,7 +67,7 @@ namespace Monster
                             return TaskStatus.Success;
                         })
                     .End()
-                .AgentRoaming("Roaming", NavMeshAgent, transform, 5)
+                .AgentRoaming("Roaming", NavMeshAgent, transform, 100)
                 .End()
                 .Build();
         }
@@ -88,27 +90,28 @@ namespace Monster
                 return;
             }
 
-            float distance = (fieldOfView.VisibleTarget[0].transform.position - transform.position).magnitude;
+            float _distance = (fieldOfView.VisibleTarget[0].transform.position - transform.position).magnitude;
 
-            Transform nearestTargetTransform = fieldOfView.VisibleTarget[0];
+            Transform _nearestTargetTransform = null;
 
-            foreach(var target in fieldOfView.VisibleTarget)
+            foreach(var _target in fieldOfView.VisibleTarget)
             {
-                if (target.GetComponent(typeof(ICharacter)) as ICharacter is null)
+                ICharacter _character = _target.GetComponent(typeof(ICharacter)) as ICharacter;
+
+                if(_character is null || _character.IsDead)
                     continue;
 
-                var newDistance = (target.transform.position - transform.position).magnitude;
+                var _newDistance = (_target.transform.position - transform.position).magnitude;
 
-                if (distance > newDistance)
+                if (_distance > _newDistance)
                 {
-                    distance = newDistance;
-                    nearestTargetTransform = target;
+                    _distance = _newDistance;
+                    _nearestTargetTransform = _target;
                 }
-
             }
 
-            FollowTarget = nearestTargetTransform;
-
+            FollowTarget = _nearestTargetTransform;
+            
             if (FollowTarget != null)
                 Debug.DrawLine(transform.position, FollowTarget.transform.position, Color.red);
         }
