@@ -39,22 +39,35 @@ namespace Monster
 
             playerControl = new PlayerControl();
             playerControl.PlayerSelection.Enable();
-            playerControl.PlayerSelection.ChangePlayerControl.performed += _context =>
+
+            playerControl.PlayerSelection.ChangePlayerIndexUp.performed += _context =>
             {
                 if (changeControlProcess != null)
                 {
                     StopCoroutine(changeControlProcess);
                     changeControlProcess = null;
-                }
-                
-                ControlIndex = (int)SelectedPlayer.SecurityType + 1;
-                
-                if (ControlIndex > 3)
-                    ControlIndex = 0;
 
-                var _nextPlayerType = (SecurityType)ControlIndex;
-                
-                changeControlProcess = StartCoroutine(SelectPlayerCoroutine(_nextPlayerType));
+                    ControlIndex = (int)(SelectedPlayer.SecurityType + 1) % 4;
+
+                    var _nextPlayerType = (SecurityType)ControlIndex;
+
+                    changeControlProcess = StartCoroutine(SelectPlayerCoroutine(_nextPlayerType));
+                }
+            };
+
+            playerControl.PlayerSelection.ChangePlayerIndexDown.performed += _context =>
+            {
+                if (changeControlProcess != null)
+                {
+                    StopCoroutine(changeControlProcess);
+                    changeControlProcess = null;
+
+                    ControlIndex = (int)(SelectedPlayer.SecurityType + 3) % 4;
+
+                    var _nextPlayerType = (SecurityType)ControlIndex;
+
+                    changeControlProcess = StartCoroutine(SelectPlayerCoroutine(_nextPlayerType));
+                }
             };
         }
 
