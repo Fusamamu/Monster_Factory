@@ -15,8 +15,8 @@ namespace Monster
         public bool IsVisible { get; private set; } = false;
 
         public bool IsTargetLock { get; set; }
-        
-        public Transform AttackTarget { get; }
+
+        public Transform AttackTarget { get; private set; }
 
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
@@ -40,6 +40,7 @@ namespace Monster
                 return;
             IsInit = true;
 
+            AttackTarget = transform;
 
             BehaviourTree = new BehaviorTreeBuilder(gameObject)
                 .Selector()

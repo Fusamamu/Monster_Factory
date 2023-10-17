@@ -31,6 +31,5 @@ namespace Monster
             yield return new WaitForSeconds(attackDelay);
             isAttack = false;
         }
-
     }
 }

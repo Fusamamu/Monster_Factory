@@ -48,9 +48,13 @@ namespace Monster
         [SerializeField] private Transform BulletSpawnTarget;
         private Coroutine shootingProcess;
 
-        private readonly List<IVisible>    allVisibleInRange   = new List<IVisible>();
-        private readonly List<IAttackAble> allShootAbleInRange = new List<IAttackAble>();
+        private readonly List<IVisible> allVisibleInRange   = new List<IVisible>();
 
+        private IAttackAble attackTarget;
+        private Quaternion targetRotation;
+        private Vector3 directionToTarget;
+        private float rotationSpeed = 10f;
+        
         private Camera mainCam;
 
         [field: SerializeField] public List<Scientist> AllFollowScientists { get; private set; } = new List<Scientist>();
@@ -133,18 +137,18 @@ namespace Monster
 
             if (IsShooting)
             {
-                foreach (var _visible in allVisibleInRange)
+                if (shootingProcess == null)
                 {
-                    if (_visible is IAttackAble _shootAble)
-                    {
-                        if(_shootAble.IsTargetLock)
-                            continue;
-                        
-                        _shootAble.IsTargetLock = true;
-                         
-                        shootingProcess = StartCoroutine(ShootBulletCoroutine(_shootAble.AttackTarget.position));
-                    }
+                    shootingProcess = StartCoroutine(ShootBulletCoroutine(attackTarget.AttackTarget.position));
+                    directionToTarget = attackTarget.AttackTarget.position - transform.position;
+                    targetRotation    = Quaternion.LookRotation(directionToTarget);
                 }
+                
+                if(Quaternion.Angle(transform.rotation, targetRotation) > 0.5f)
+                    transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                
+                if(Vector3.Distance(transform.position, attackTarget.AttackTarget.position) > 5f)
+                    StopShooting();
             }
         }
         
@@ -187,10 +191,6 @@ namespace Monster
                 StopCoroutine(shootingProcess);
                 shootingProcess = null;
             }
-
-            foreach (var _shootAble in allShootAbleInRange)
-                _shootAble.IsTargetLock = false;
-            allVisibleInRange.Clear();
         }
 
         public void OnEnterZoneDetector(ZoneDetector _zoneDetector)
@@ -203,6 +203,7 @@ namespace Monster
                 {
                     _scientist.OnStopFollowHandler();
                     _scientist.MoveTo(_target.position);
+                    _scientist.IsSafe = true;
                 }
                 
                 AllFollowScientists.Clear();
@@ -214,32 +215,42 @@ namespace Monster
             if (_other.TryGetComponent<IVisible>(out var _visible))
             {
                 _visible.SetVisible(true);
-
-                if (_visible is IAttackAble _shootAble)
-                {
-                    StartShooting();
-
-                    NavMeshAgent.ResetPath();
-                    NavMeshAgent.isStopped = true;
-                    
-                    if(!allShootAbleInRange.Contains(_shootAble))
-                        allShootAbleInRange.Add(_shootAble);
-                }
                 
                 if(!allVisibleInRange.Contains(_visible))
                     allVisibleInRange.Add(_visible);
             }
+            
+            if (_other.TryGetComponent<IAttackAble>(out var _attackAble))
+            {
+                StartShooting();
+                NavMeshAgent.ResetPath();
+                NavMeshAgent.isStopped = true;
+
+                attackTarget = _attackAble;
+            }
 
             if (_other.TryGetComponent<Scientist>(out var _scientist))
             {
-                Debug.Log("Found Scientist");
-                _scientist.OnStartFollowHandler(this);
-                
-                if(!AllFollowScientists.Contains(_scientist))
-                    AllFollowScientists.Add(_scientist);
+                if (!_scientist.IsSafe)
+                {
+                    _scientist.OnStartFollowHandler(this);
+                    
+                    if(!AllFollowScientists.Contains(_scientist))
+                        AllFollowScientists.Add(_scientist);
+                }
             }
         }
-        
+
+        private void OnTriggerStay(Collider _other)
+        {
+            // if (attackTarget != null && !IsShooting)
+            // {
+            //     StartShooting();
+            //     NavMeshAgent.ResetPath();
+            //     NavMeshAgent.isStopped = true;
+            // }
+        }
+
         private void OnTriggerExit(Collider _other)
         {
             if (_other.TryGetComponent<IVisible>(out var _visible))

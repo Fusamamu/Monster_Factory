@@ -11,6 +11,8 @@ namespace Monster
     {
         public bool IsInit { get; private set; }
 
+        public bool IsSafe { get; set; }
+        
         public bool IsVisible { get; private set; } = false;
         
         [field:SerializeField] public int HP { get; private set; }
@@ -31,6 +33,8 @@ namespace Monster
 
         [SerializeField] private float rotationSpeed;
 
+        
+        
         private float coolDown;
         private bool isFinishCelebrated;
         private bool canStartFollow = true;
@@ -54,6 +58,17 @@ namespace Monster
         
         private void Update () 
         {
+            if (IsSafe)
+            {
+                if (!NavMeshAgent.pathPending)
+                {
+                    if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance)
+                        if (!NavMeshAgent.hasPath || NavMeshAgent.velocity.sqrMagnitude == 0f)
+                            Animator.SetBool(AnimHash.IsRunning, false);
+                }
+                return;
+            }
+            
             if(FollowSecurity == null || !isFinishCelebrated)
                 return;
             
