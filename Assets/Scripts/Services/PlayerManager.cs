@@ -96,5 +96,10 @@ namespace Monster
                 .Get<CharacterDisplayGUI>()
                 .OnCharacterControlChanged(SelectedPlayer);
         }
+
+        private void OnPlayDeadHandler()
+        {
+            
+        }
     }
 }

@@ -22,6 +22,7 @@ namespace Monster
         
         public bool IsInit    { get; private set; }
         public bool IsVisible { get; private set; } = true;
+        public bool IsDead    { get; private set; }
         
         [field: SerializeField] public int HP { get; private set; }
         
@@ -93,6 +94,12 @@ namespace Monster
         {
             HP -= _damage;
 
+            if (HP <= 0)
+            {
+                IsDead = true;
+                Animator.SetBool("IsDead", true);
+            }
+
             Debug.Log(gameObject.name + " recieved " + _damage + " current hp is now " + HP);
         }
         
@@ -104,6 +111,9 @@ namespace Monster
 
         private void Update()
         {
+            if(IsDead)
+                return;
+            
             if(!IsInit || !IsControlled)
                 return;
             
@@ -239,16 +249,6 @@ namespace Monster
                         AllFollowScientists.Add(_scientist);
                 }
             }
-        }
-
-        private void OnTriggerStay(Collider _other)
-        {
-            // if (attackTarget != null && !IsShooting)
-            // {
-            //     StartShooting();
-            //     NavMeshAgent.ResetPath();
-            //     NavMeshAgent.isStopped = true;
-            // }
         }
 
         private void OnTriggerExit(Collider _other)
