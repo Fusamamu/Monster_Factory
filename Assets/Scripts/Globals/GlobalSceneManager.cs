@@ -10,7 +10,7 @@ namespace Monster
 {
 	public static class SceneName
 	{
-		public static string GameplayScene  = "GameplayScene";
+		public static string GameplayScene  = "PrototypeScene";
 		public static string StartMenuScene = "StartScene";
 	}
     
@@ -73,7 +73,6 @@ namespace Monster
 
 			yield return new WaitUntil(() => !OnTransitionAnimation.IsPlaying);
 			
-			
 			Disclaimer.SetActive(true);
 			
 			yield return new WaitForSeconds(3f);
@@ -84,8 +83,6 @@ namespace Monster
 				yield return null;
             
 			yield return new WaitForSeconds(0.33f);
-			
-			
 			
 			Disclaimer.SetActive(false);
 

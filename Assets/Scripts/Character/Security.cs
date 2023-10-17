@@ -92,12 +92,20 @@ namespace Monster
         
         public void ReceiveDamage(int _damage)
         {
+            if(IsDead)
+                return;
+            
             HP -= _damage;
 
             if (HP <= 0)
             {
                 IsDead = true;
                 Animator.SetBool("IsDead", true);
+
+                ServiceLocator
+                    .Instance
+                    .Get<PlayerManager>()
+                    .OnSecurityDeadHandler(this);
             }
 
             Debug.Log(gameObject.name + " recieved " + _damage + " current hp is now " + HP);
@@ -149,7 +157,7 @@ namespace Monster
             {
                 if (shootingProcess == null)
                 {
-                    shootingProcess = StartCoroutine(ShootBulletCoroutine(attackTarget.AttackTarget.position));
+                    shootingProcess   = StartCoroutine(ShootBulletCoroutine(attackTarget.AttackTarget.position));
                     directionToTarget = attackTarget.AttackTarget.position - transform.position;
                     targetRotation    = Quaternion.LookRotation(directionToTarget);
                 }

@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Linq;
 using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +14,8 @@ namespace Monster
         public bool IsInit { get; private set; }
 
         public bool IsSafe { get; set; }
+        
+        public bool IsDead { get; set; }
         
         public bool IsVisible { get; private set; } = false;
         
@@ -58,6 +62,9 @@ namespace Monster
         
         private void Update () 
         {
+            if(IsDead)
+                return;
+            
             if (IsSafe)
             {
                 if (!NavMeshAgent.pathPending)
@@ -109,15 +116,24 @@ namespace Monster
         
         public void ReceiveDamage(int _damage)
         {
+            if(IsDead)
+                return;
+            
             HP -= _damage;
-
-            Debug.Log(gameObject.name + " recieved " + _damage + " current hp is now " + HP);
-
             if (HP <= 0)
             {
-                Debug.Log(gameObject.name + " died!");
-                Destroy(gameObject);
+                IsDead = true;
+                Animator.SetBool("IsDead", true);
+
+                var _scientistLeftCount = ServiceLocator.Instance.Get<CharacterManager>().AllScientists.Count(_o => !_o.IsDead);
+
+                var _headerGUI = ServiceLocator.Instance.Get<UIManager>().Get<HeaderGUI>();
+                _headerGUI.MainText.SetText("SCIENTIST LIFE SIGNAL LOST");
+                _headerGUI.SubTest.SetText($"SCIENTIST {_scientistLeftCount} LEFT");
+                _headerGUI.Open();
             }
+            
+            Debug.Log(gameObject.name + " recieved " + _damage + " current hp is now " + HP);
         }
 
         public void SetVisible(bool _value)
