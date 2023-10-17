@@ -26,7 +26,6 @@ namespace Monster
         {
             isAttack = true;
 
-            Debug.Log("attack");
             _attacker.Attack(_target, damage);
 
             yield return new WaitForSeconds(attackDelay);

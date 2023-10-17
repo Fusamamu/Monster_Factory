@@ -151,7 +151,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.20867452, y: 0, z: -0.01922252}
+  velocity: {x: 0.8953304, y: 0, z: -0.010252513}
 --- !u!114 &5105206464229223454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,9 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 4
-  targetLayerMask:
+  ignoreLayerMask:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 1
   visibleTarget: []
 --- !u!114 &3179344751156638003
 MonoBehaviour:
@@ -240,6 +240,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttack: 0
-  attackRange: 1.25
+  attackRange: 2.35
   attackDelay: 0.5
   damage: 25

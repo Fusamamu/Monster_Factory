@@ -10,7 +10,7 @@ namespace Monster
         public List<Transform> VisibleTarget { get => visibleTarget; }
 
         [SerializeField] private float viewRadius;
-        [SerializeField] private LayerMask targetLayerMask;
+        [SerializeField] private LayerMask ignoreLayerMask;
         [SerializeField] private List<Transform> visibleTarget;
 
         private void Update()

@@ -9,6 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4123124391349186427, guid: 6232c5e0796094d4db7079b6a2bf25de,
         type: 3}
+      propertyPath: <HP>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123124391349186427, guid: 6232c5e0796094d4db7079b6a2bf25de,
+        type: 3}
       propertyPath: <SecurityType>k__BackingField
       value: 1
       objectReference: {fileID: 0}

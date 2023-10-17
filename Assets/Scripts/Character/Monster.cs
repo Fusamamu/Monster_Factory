@@ -91,16 +91,16 @@ namespace Monster
 
             foreach(var target in fieldOfView.VisibleTarget)
             {
-                if (target.GetComponent<ICharacter>() is null)
-                {
-                    nearestTargetTransform = null;
+                if (target.GetComponent(typeof(ICharacter)) as ICharacter is null)
                     continue;
-                }
 
                 var newDistance = (target.transform.position - transform.position).magnitude;
 
                 if (distance > newDistance)
+                {
+                    distance = newDistance;
                     nearestTargetTransform = target;
+                }
 
             }
 
@@ -112,7 +112,8 @@ namespace Monster
 
         public void Attack(IDamageable _attackTarget, int _damage) 
         {
-            //_attackTarget.ReceiveDamage(_damage);
+            Debug.DrawLine(transform.position, FollowTarget.transform.position, Color.yellow);
+            _attackTarget.ReceiveDamage(_damage);
         }
 
         public void SetVisible(bool _value)

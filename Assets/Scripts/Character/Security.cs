@@ -87,6 +87,9 @@ namespace Monster
         
         public void ReceiveDamage(int _damage)
         {
+            HP -= _damage;
+
+            Debug.Log(gameObject.name + " recieved " + _damage + " current hp is now " + HP);
         }
         
         public void SetVisible(bool _value)
