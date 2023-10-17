@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
+using MoreMountains.Tools;
+using Unity.VisualScripting;
 
 namespace Monster
 {
@@ -33,8 +35,10 @@ namespace Monster
 
         [SerializeField] private float rotationSpeed;
 
-        
-        
+        [SerializeField] private FieldOfView fieldOfView;
+
+        [SerializeField] private Transform monsterTransform;
+
         private float coolDown;
         private bool isFinishCelebrated;
         private bool canStartFollow = true;
@@ -54,9 +58,31 @@ namespace Monster
             SetVisible(false);
 
             NavMeshAgent.stoppingDistance = 1.5f;
+
+            BehaviourTree = new BehaviorTreeBuilder(gameObject)
+                .Selector()
+                .Sequence("Fleeing")
+                    .Condition(() => monsterTransform != null)
+                    .Do("Flee From Target", () =>
+                    {
+                        NavMeshAgent.SetDestination(-monsterTransform.transform.position);
+                        return TaskStatus.Success;
+                    })
+                    .End()
+                .Sequence("Follow Security")
+                    .Condition(() => FollowSecurity != null)
+                    .Do("Follow Security", () =>
+                    {
+                        DoFollowSecurity();
+                        return TaskStatus.Success;
+                    })
+                    .End()
+                .AgentRoaming("Roaming", NavMeshAgent, transform, 5)
+                .End()
+                .Build();
         }
         
-        private void Update () 
+        private void Update ()
         {
             if (IsSafe)
             {
@@ -68,10 +94,18 @@ namespace Monster
                 }
                 return;
             }
-            
-            if(FollowSecurity == null || !isFinishCelebrated)
+
+            DetectMonster();
+            BehaviourTree.Tick();
+
+            //DoFollowSecurity();
+        }
+
+        private void DoFollowSecurity()
+        {
+            if (FollowSecurity == null || !isFinishCelebrated)
                 return;
-            
+
             float _distanceToTarget = Vector3.Distance(transform.position, FollowSecurity.transform.position);
 
             if (_distanceToTarget > breakDistance)
@@ -79,7 +113,7 @@ namespace Monster
                 OnStopFollowHandler();
                 return;
             }
-            
+
             if (_distanceToTarget > stopDistance)
             {
                 Animator.SetBool(AnimHash.IsRunning, true);
@@ -91,7 +125,7 @@ namespace Monster
                 Animator.SetBool(AnimHash.IsRunning, false);
                 NavMeshAgent.isStopped = true;
             }
-            
+
             Vector3 _directionToTarget = (FollowSecurity.transform.position - transform.position).normalized;
             if (_directionToTarget != Vector3.zero)
             {
@@ -163,6 +197,20 @@ namespace Monster
             Animator.SetBool(AnimHash.IsCelebrate, false);
             Animator.SetBool(AnimHash.IsTerrified, true);
             NavMeshAgent.isStopped = true;
+        }
+
+        private void DetectMonster()
+        {
+            foreach (var target in fieldOfView.VisibleTarget)
+            {
+                if (target.TryGetComponent<Monster>(out var monster))
+                {
+                    monsterTransform = monster.transform;
+                    break;
+                }
+                else
+                    monsterTransform = null;
+            }
         }
 
         private IEnumerator CelebrateCoroutine()
