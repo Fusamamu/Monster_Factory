@@ -145,7 +145,8 @@ namespace Monster
                 {
                     Animator.SetBool(AnimHash.IsRunning, true);
                     NavMeshAgent.isStopped = false;
-                    NavMeshAgent.destination = _mouseHit.point;
+                    //NavMeshAgent.destination = _mouseHit.point;
+                    NavMeshAgent.SetDestination(_mouseHit.point);
                 }
             }
             

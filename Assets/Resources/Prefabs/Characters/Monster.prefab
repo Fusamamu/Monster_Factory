@@ -99,8 +99,7 @@ GameObject:
   - component: {fileID: 1526901390096753992}
   - component: {fileID: 3179344751156638003}
   - component: {fileID: 8004377919764052203}
-  - component: {fileID: 3562118629237814229}
-  - component: {fileID: 8480203153611596701}
+  - component: {fileID: 6713142971642233036}
   m_Layer: 6
   m_Name: Monster
   m_TagString: Untagged
@@ -147,14 +146,14 @@ MonoBehaviour:
   minLegLifetime: 5
   maxLegLifetime: 15
   legPlacerOrigin: {x: 0, y: 0, z: 0}
-  newLegRadius: 3
-  minLegDistance: 4.5
-  maxLegDistance: 6.2999997
+  newLegRadius: 2
+  minLegDistance: 2.35
+  maxLegDistance: 4.2
   legResolution: 40
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
-  newLegCooldown: 0.2
-  velocity: {x: 0.19132859, y: 0, z: -0.19748616}
+  newLegCooldown: 0.1
+  velocity: {x: 0.83862156, y: 0, z: -0.08650574}
 --- !u!114 &5105206464229223454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttack: 0
   attackRange: 2.35
-  attackDelay: 0.5
+  attackDelay: 1
   damage: 20
 --- !u!114 &8004377919764052203
 MonoBehaviour:
@@ -274,7 +273,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   LightScaleSpeed: 10
   AlphaSpeed: 5
---- !u!135 &3562118629237814229
+--- !u!135 &6713142971642233036
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,20 +282,7 @@ SphereCollider:
   m_GameObject: {fileID: 4521153465625292070}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: 0.4, y: 0, z: 0}
---- !u!135 &8480203153611596701
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4521153465625292070}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: -0.4, y: 0, z: 0}
+  m_Radius: 0.21
+  m_Center: {x: 0, y: 0, z: 0}
