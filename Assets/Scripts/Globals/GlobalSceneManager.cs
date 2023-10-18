@@ -96,7 +96,7 @@ namespace Monster
 			
 			Document.SetActive(true);
 
-			while (ContentIndex < Contents.Count - 1)
+			while (ContentIndex < Contents.Count)
 			{
 				foreach (var _content in Contents)
 					_content.SetActive(false);
@@ -109,7 +109,7 @@ namespace Monster
 				foreach (var _content in Contents)
 					_content.SetActive(false);
 				
-				yield return new WaitForSeconds(2f);
+				yield return new WaitForSeconds(0.5f);
 			}
 
 			ContentIndex = 0;
