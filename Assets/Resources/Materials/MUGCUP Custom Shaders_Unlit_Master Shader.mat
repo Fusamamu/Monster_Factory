@@ -41,9 +41,9 @@ Material:
     - _GradientOriginA: 0.38
     - _GradientOriginB: 4
     - _Intensity: 2.98
-    - _MainRadius: 5.6025114
+    - _MainRadius: 5.4833198
     - _NoiseScale: 0.03
-    - _SecondaryRadius: 5.897381
+    - _SecondaryRadius: 5.7719154
     - _WobbleSpeed: 1
     m_Colors:
     - _A1: {r: 0.1509434, g: 0.14186543, b: 0.13883945, a: 1}
@@ -64,7 +64,7 @@ Material:
     - _HitColor: {r: 1, g: 1, b: 1, a: 1}
     - _R1: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 1}
     - _R2: {r: 0.8207547, g: 0.74777526, b: 0.615566, a: 1}
-    - _SamplePos: {r: 10.566252, g: 0.051594466, b: 43.9732, a: 0}
+    - _SamplePos: {r: -4.65829, g: 0.051594466, b: 29.9062, a: 0}
     - _SideCol: {r: 0.3962264, g: 0.35748553, b: 0.30838376, a: 1}
     - _TopCol: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
