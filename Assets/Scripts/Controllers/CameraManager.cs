@@ -47,13 +47,13 @@ namespace Monster
             if(!IsInit)
                 return;
             
-            var _a = cameraControl.CameraMovement.MoveLeft.ReadValue<float>();
-            if (_a > 0f) 
-                AnchorTarget.transform.position += Vector3.left * CameraSpeed * _a;
-
-            var _b = cameraControl.CameraMovement.MoveRight.ReadValue<float>();
-            if (_b > 0f)
-                AnchorTarget.transform.position += Vector3.right * CameraSpeed * _b;
+            // var _a = cameraControl.CameraMovement.MoveLeft.ReadValue<float>();
+            // if (_a > 0f) 
+            //     AnchorTarget.transform.position += Vector3.left * CameraSpeed * _a;
+            //
+            // var _b = cameraControl.CameraMovement.MoveRight.ReadValue<float>();
+            // if (_b > 0f)
+            //     AnchorTarget.transform.position += Vector3.right * CameraSpeed * _b;
 
             var _zoomValue = cameraControl.CameraMovement.ZoomIn.ReadValue<float>();
             if (_zoomValue > 0f)
