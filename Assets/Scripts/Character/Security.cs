@@ -234,8 +234,14 @@ namespace Monster
             {
                 var _target = _zoneDetector.AllSubZoneRefs.First().ZoneTransform;
                 
-                foreach (var _scientist in AllFollowScientists)
+                foreach (var _scientist in AllFollowScientists.ToList())
                 {
+                    if (_scientist.IsDead)
+                    {
+                        AllFollowScientists.Remove(_scientist);
+                        continue;
+                    }
+
                     _scientist.OnStopFollowHandler();
                     _scientist.MoveTo(_target.position);
                     _scientist.IsSafe = true;
