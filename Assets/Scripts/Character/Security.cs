@@ -141,7 +141,7 @@ namespace Monster
                 
                 var _ray = mainCam.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-                if (Physics.Raycast(_ray, out var _mouseHit, Mathf.Infinity))
+                if (Physics.Raycast(_ray, out var _mouseHit, Mathf.Infinity, LayerMask.NameToLayer("Security"), QueryTriggerInteraction.Ignore))
                 {
                     Animator.SetBool(AnimHash.IsRunning, true);
                     NavMeshAgent.isStopped = false;

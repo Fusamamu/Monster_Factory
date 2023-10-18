@@ -5,6 +5,7 @@ using System.Linq;
 using MoreMountains.Feedbacks;
 using MPUIKIT;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Monster
@@ -102,8 +103,13 @@ namespace Monster
 
 				Contents[ContentIndex].SetActive(true);
 				ContentIndex++;
+
+				yield return new WaitUntil(() => Mouse.current.leftButton.wasPressedThisFrame);
 				
-				yield return new WaitForSeconds(3f);
+				foreach (var _content in Contents)
+					_content.SetActive(false);
+				
+				yield return new WaitForSeconds(2f);
 			}
 
 			ContentIndex = 0;

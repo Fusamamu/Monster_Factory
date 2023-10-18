@@ -49,7 +49,7 @@ namespace Monster
         private bool isFollowing;
 
         private float stopDistance  = 1.5f;
-        private float breakDistance = 3.0f;
+        private float breakDistance = 6.0f;
         
         public GameObject BloodStrainPrefab;
         

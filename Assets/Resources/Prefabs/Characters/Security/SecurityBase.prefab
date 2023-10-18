@@ -1223,7 +1223,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 6.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &4123124391349186426
 NavMeshAgent:
@@ -1304,8 +1304,8 @@ MonoBehaviour:
   TargetRenderer: {fileID: 0}
   TargetMaterial: {fileID: 2100000, guid: dceac505d6d5b4ca685db854d859be44, type: 2}
   InvisibleMaterial: {fileID: 0}
-  MainRadiusValue: 6
-  SecondaryRadiusValue: 6.5
+  MainRadiusValue: 5.7
+  SecondaryRadiusValue: 6
   TValue: 0
   RadiusAnimation:
     serializedVersion: 2
