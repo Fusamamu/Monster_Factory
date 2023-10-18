@@ -483,3 +483,4 @@ MonoBehaviour:
   rotationSpeed: 7
   fieldOfView: {fileID: 2485724275376271219}
   monsterTransform: {fileID: 0}
+  BloodStrainPrefab: {fileID: 100000, guid: 358b75ea5451cf143ab19029a189097d, type: 3}

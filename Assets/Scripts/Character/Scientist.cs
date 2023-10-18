@@ -51,6 +51,8 @@ namespace Monster
         private float stopDistance  = 1.5f;
         private float breakDistance = 3.0f;
         
+        public GameObject BloodStrainPrefab;
+        
         public void Init()
         {
             if(IsInit)
@@ -59,7 +61,7 @@ namespace Monster
             
             RenderControl.Init();
             
-            //SetVisible(false);
+            SetVisible(false);
 
             NavMeshAgent.stoppingDistance = 1.5f;
 
@@ -170,6 +172,8 @@ namespace Monster
                 _headerGUI.Open();
             }
             
+            var _blood = Instantiate(BloodStrainPrefab, transform.position, Quaternion.identity);
+            _blood.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             Debug.Log(gameObject.name + " recieved " + _damage + " current hp is now " + HP);
         }
 

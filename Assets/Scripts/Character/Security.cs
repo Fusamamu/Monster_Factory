@@ -60,6 +60,9 @@ namespace Monster
 
         [field: SerializeField] public List<Scientist> AllFollowScientists { get; private set; } = new List<Scientist>();
 
+        public ParticleSystem BloodSplatParticleSystem;
+        public GameObject BloodStrainPrefab;
+
         public void Init()
         {
             if(IsInit)
@@ -108,6 +111,11 @@ namespace Monster
                     .OnSecurityDeadHandler(this);
             }
 
+            BloodSplatParticleSystem.Stop();
+            BloodSplatParticleSystem.Play();
+
+            var _blood = Instantiate(BloodStrainPrefab, transform.position, Quaternion.identity);
+            _blood.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             Debug.Log(gameObject.name + " recieved " + _damage + " current hp is now " + HP);
         }
         

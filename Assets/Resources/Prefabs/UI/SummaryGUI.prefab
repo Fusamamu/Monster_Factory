@@ -62,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnOpenAnimation: {fileID: 5916319561839353677}
   OnCloseAnimation: {fileID: 5916319562255642967}
+  ScientistSavedCountText: {fileID: 5916319563310995424}
   BrightStatusText: {fileID: 5916319562873351280}
   PoomStatusText: {fileID: 5916319561692764884}
   KameeStatusText: {fileID: 5916319562514741919}

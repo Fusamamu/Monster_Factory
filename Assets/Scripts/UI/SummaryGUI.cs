@@ -12,6 +12,8 @@ namespace Monster
         public MMF_Player OnOpenAnimation;
         public MMF_Player OnCloseAnimation;
 
+        public TextMeshProUGUI ScientistSavedCountText;
+        
         public TextMeshProUGUI BrightStatusText;
         public TextMeshProUGUI PoomStatusText;
         public TextMeshProUGUI KameeStatusText;
@@ -50,6 +52,10 @@ namespace Monster
         public override void Open()
         {
             OnOpenAnimation.PlayFeedbacks();
+
+            var _saveCount = ServiceLocator.Instance.Get<CharacterManager>().GetScientistSavedCount();
+            
+            ScientistSavedCountText.SetText($"SCIENTIST SAVED : {_saveCount}");
 
             foreach (var _kvp in playerManager.SecurityTable)
             {

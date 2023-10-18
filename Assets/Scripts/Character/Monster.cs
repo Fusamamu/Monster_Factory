@@ -23,6 +23,7 @@ namespace Monster
 
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
+        [field: SerializeField] public RenderControl RenderControl { get; private set; }
 
         [field: SerializeField] public int HP { get; private set; }
 
@@ -43,6 +44,8 @@ namespace Monster
             if (IsInit)
                 return;
             IsInit = true;
+            
+            RenderControl.Init();
 
             AttackTarget = transform;
 

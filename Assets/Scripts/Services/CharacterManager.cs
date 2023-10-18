@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Monster
@@ -23,6 +24,11 @@ namespace Monster
         public void OnScientistDeadHandler(Scientist _scientist)
         {
             AllScientists.Remove(_scientist);
+        }
+
+        public int GetScientistSavedCount()
+        {
+            return AllScientists.Count(_scientist => !_scientist.IsDead && _scientist.IsSafe);
         }
 
         public void OnScientistSaved(Scientist _scientist)
