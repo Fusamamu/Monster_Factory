@@ -210,7 +210,7 @@ namespace Monster
             if(!isFollowing)
                 return;
             
-            Debug.Log("Stop Follow");
+            FollowSecurity.OnBreakFromScientist(this);
                 
             isFollowing        = false;
             isFinishCelebrated = false;

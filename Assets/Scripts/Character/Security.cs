@@ -284,5 +284,10 @@ namespace Monster
                 allVisibleInRange.Remove(_visible);
             }
         }
+
+        public void OnBreakFromScientist(Scientist _scientist)
+        {
+            AllFollowScientists.Remove(_scientist);
+        }
     }
 }
