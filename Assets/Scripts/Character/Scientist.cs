@@ -207,9 +207,9 @@ namespace Monster
 
         public void OnStopFollowHandler()
         {
-            if(!isFollowing)
+            if(!isFollowing || FollowSecurity is null)
                 return;
-            
+
             FollowSecurity.OnBreakFromScientist(this);
                 
             isFollowing        = false;
