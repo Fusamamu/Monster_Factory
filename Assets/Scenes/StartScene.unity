@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 179560079}
   - component: {fileID: 179560080}
+  - component: {fileID: 179560081}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -189,6 +190,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &179560081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179560078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc1042cab6384283a1978da4f543f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartMenuButton: {fileID: 701812431}
+  QuitButton: {fileID: 1142130913}
 --- !u!114 &223536849 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8541611893631197172, guid: d10ceb231f87b42c79ea11617851a089,
@@ -1671,19 +1686,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 701812430}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 223536849}
-        m_TargetAssemblyTypeName: Monster.GlobalSceneManager, Assembly-CSharp
-        m_MethodName: LoadNewGameScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: PrototypeScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &701812432
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2479,9 +2482,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'NEW GAME
-
-'
+  m_text: START GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 585b562a780b94b02a1b826959ea5f65, type: 2}
   m_sharedMaterial: {fileID: -29950623554948178, guid: 585b562a780b94b02a1b826959ea5f65,
@@ -3259,7 +3260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2137832993
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3276,10 +3277,10 @@ RectTransform:
   m_Father: {fileID: 179560079}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 57.37}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 247.35, y: -90.795}
+  m_SizeDelta: {x: 494.7, y: 57.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2137832994
 MonoBehaviour:

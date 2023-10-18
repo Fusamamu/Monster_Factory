@@ -116,6 +116,8 @@ namespace Monster
 
             var _blood = Instantiate(BloodStrainPrefab, transform.position, Quaternion.identity);
             _blood.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            
+            GlobalAudioManager.Instance.PlayBloodSplat();
             Debug.Log(gameObject.name + " recieved " + _damage + " current hp is now " + HP);
         }
         
@@ -153,6 +155,10 @@ namespace Monster
                 if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance)
                     if (!NavMeshAgent.hasPath || NavMeshAgent.velocity.sqrMagnitude == 0f)
                         Animator.SetBool(AnimHash.IsRunning, false);
+                
+            }
+            else
+            {
             }
             
             var _position = TargetTransform.position;
@@ -191,6 +197,8 @@ namespace Monster
                         .SetSpawnPosition(BulletSpawnTarget.position)
                         .SetDirection(TargetTransform.forward)
                         .StartFire();
+                    
+                    GlobalAudioManager.Instance.PlayShooting();
                 }
 
                 yield return new WaitForSeconds(ShootInterval);

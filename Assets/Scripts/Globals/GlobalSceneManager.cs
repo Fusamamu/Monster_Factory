@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MoreMountains.Feedbacks;
 using MPUIKIT;
 using UnityEngine;
@@ -21,7 +22,11 @@ namespace Monster
 		public MMF_Player OnTransitionAnimation;
 
 		public GameObject Disclaimer;
-		
+
+		public GameObject Document;
+		public List<GameObject> Contents = new List<GameObject>();
+		public int ContentIndex;
+
 		private void Awake()
 		{
 			if (Instance != null && Instance != this)
@@ -85,7 +90,29 @@ namespace Monster
 			yield return new WaitForSeconds(0.33f);
 			
 			Disclaimer.SetActive(false);
+			
+			yield return new WaitForSeconds(1f);
+			
+			Document.SetActive(true);
 
+			while (ContentIndex < Contents.Count - 1)
+			{
+				foreach (var _content in Contents)
+					_content.SetActive(false);
+
+				Contents[ContentIndex].SetActive(true);
+				ContentIndex++;
+				
+				yield return new WaitForSeconds(3f);
+			}
+
+			ContentIndex = 0;
+			foreach (var _content in Contents)
+				_content.SetActive(false);
+			
+			Document.SetActive(false);
+
+			
 			OnTransitionAnimation.Direction = MMFeedbacks.Directions.BottomToTop;
 			OnTransitionAnimation.PlayFeedbacks();
 		}
